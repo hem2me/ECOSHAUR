@@ -187,8 +187,6 @@
 <div class="ranking-pagination__desc">
 	<span>1 ~ 20</span> 위
 </div>
-
-
-
-<!-- 본문 끝 -->			
+<!-- 본문 끝 -->
+			
 <%@ include file="../footer.jsp" %>
