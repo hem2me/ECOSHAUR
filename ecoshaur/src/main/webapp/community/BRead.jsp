@@ -18,13 +18,13 @@
         </div>
     </div>
 </div>
+
 <div class="container">
 <br><br>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel-body">
-					<table class="table table-striped table-bordered table-hover" 
-					 style="vertical-align:middle">
+					<table class="table table-striped table-bordered table-hover" style="vertical-align:middle">
 						<thead>
 							<tr>
 								<th width="20%">NO</th>
@@ -36,9 +36,10 @@
 							</tr>
 							<tr>
 								<th style="vertical-align:middle">내용</th>
-								<td>${dto.contents}<br><br><br>								
-								<img src="./community/storage/${dto.image_name}"
-								onError="this.style.visibility='hidden'"></td>
+								<td><img src="./community/storage/${dto.image_name}"
+								     onError="this.style.visibility='hidden'"><br><br><br>
+								     ${dto.contents}								
+								</td>
 							</tr>
 							<tr>
 								<th>작성일</th>
@@ -69,7 +70,7 @@
 	</div>	
 	<br>
 	
-			<div style="text-align:center;">
+<div style="text-align:center;">
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 
@@ -83,13 +84,11 @@
 	
 <c:choose>
 	<c:when  test="${id.equalsIgnoreCase(dto.id) || grade eq 'M' }">
-
 			<a href="BUpdate.do?postno=${dto.postno}" class="btn btn-success">수정</a>
 		    <a href="BDelete.do?postno=${dto.postno}" class="btn btn-success">삭제</a>
-
     </c:when>
 </c:choose>   	
-		</div> 		
-<br><br><br><br><br><br><br><br>
-<!-- 본문 끝 -->		
+</div> 		
+<!-- 본문 끝 -->	
+	
 <%@ include file="../footer.jsp" %>

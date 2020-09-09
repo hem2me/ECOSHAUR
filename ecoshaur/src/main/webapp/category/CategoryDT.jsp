@@ -105,12 +105,10 @@
                     </div>
                 </div>
             </div>
-            
         </c:forEach>
-        
         </div>
 </div>
-<br>
+<br><br><br>
         <nav class="nav justify-content-center" aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -127,13 +125,11 @@
 				<c:choose><c:when test="${cg eq '콘솔/게이밍'}"> <a class="page-link" href="CategoryDT.do?category=콘솔/게이밍&nowpage=${i}&col=&search="><c:out value="${i}"/></a></li>  </c:when></c:choose>
 				
 				<c:choose><c:when test="${cg eq '카메라'}"> <a class="page-link" href="CategoryDT.do?category=카메라&nowpage=${i}&col=&search="><c:out value="${i}"/></a></li> </c:when></c:choose>
-		    	
-		    	
+
 		    </c:forEach>
-		    
 		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 		  </ul>
-		</nav>
+		</nav>	
 	<!-- 검색기능 -->
 	<div style="text-align:center;">
 		<form method="get" action="Category.do">
@@ -157,9 +153,11 @@
 		</form>
 	</div>
 
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./assets/libs/js/category.js"></script>
-<!-- 본문 끝 -->		
+</div>
+</div>
+<!-- 본문 끝 -->	
+	
 <%@ include file="../footer.jsp" %>

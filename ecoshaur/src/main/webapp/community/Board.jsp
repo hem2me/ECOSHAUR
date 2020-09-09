@@ -18,6 +18,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
 	<div style="text-align:center;">
 		<form method="get" action="Board.do">
@@ -39,6 +40,7 @@
 			<input type="submit" class="btn btn-primary" value="Search">
 		</form>
 	</div>
+	<br><br>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel-body">
@@ -79,18 +81,18 @@
 			<li>
 				<c:choose>
 					<c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">Previous</a> </c:when>
-	                <c:otherwise> <a class="page-link" href="Board.do?nowpage=${nowpage-1 }">Previous</a> </c:otherwise>
+	                <c:otherwise> <a class="page-link" href="Board.do?nowpage=${nowpage-1 }&col=&search=">Previous</a> </c:otherwise>
 	            </c:choose>
           	</li>
 		    <c:forEach var="i" begin="1" 
 		    end="${count%recordPerPage==0 ? (count/recordPerPage) : (count/recordPerPage)+1}">
 		    	<li class="page-item ${nowpage==i ? 'active' : ''}">
-		    	<a class="page-link" href="Board.do?nowpage=${i}"><c:out value="${i}"/></a></li>
+		    	<a class="page-link" href="Board.do?nowpage=${i}&col=&search="><c:out value="${i}"/></a></li>
 		    </c:forEach>
 		          <li class="page-item">
 		          	<c:choose>
 		          		<c:when test="${nowpage == i}"><a class="page-link disabled">Next</a></c:when>
-                  		<c:otherwise> <a class="page-link" href="Board.do?nowpage=${nowpage+1 }">Next</a> </c:otherwise>
+                  		<c:otherwise> <a class="page-link" href="Board.do?nowpage=${nowpage+1 }&col=&search=">Next</a> </c:otherwise>
           			</c:choose></li>        
 	</ul>
 	</nav>
@@ -110,10 +112,13 @@
 			location.href = "BCreate.do";	
 		}
 		else{
-			alert("글쓰기는 로그인후 가능합니다!")
+			alert("글쓰기는 로그인 후 가능합니다!")
 		}
 	}
 	</script>
+</div>
+</div>
+</div>	
 <!-- 본문 끝 -->
 		
 <%@ include file="../footer.jsp" %>
