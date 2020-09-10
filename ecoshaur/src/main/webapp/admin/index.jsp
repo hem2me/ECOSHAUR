@@ -57,7 +57,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                 <div class="card border-3 border-top border-top-primary">
                                     <div class="card-body">
-                                        <h5 class="text-muted">총 거래금액</h5>
+                                        <h5 class="text-muted">총 거래 금액</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1">${total_price} 원</h1>
                                         </div>
@@ -74,7 +74,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                 <div class="card border-3 border-top border-top-primary">
                                     <div class="card-body">
-                                        <h5 class="text-muted">신규회원 수</h5>
+                                        <h5 class="text-muted">신규 회원 수</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1">${new_user}</h1>
                                         </div>
@@ -108,7 +108,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                 <div class="card border-3 border-top border-top-primary">
                                     <div class="card-body">
-                                        <h5 class="text-muted">총 주문수</h5>
+                                        <h5 class="text-muted">총 주문 수</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1">${total_order }</h1>
                                         </div>

@@ -30,10 +30,14 @@ public class BoardDAO {
 
     public BoardDAO() { }
     
-    //湲�紐⑸줉
+    //글목록
     public ArrayList<BoardDTO> list(int nowpage, int recordPerPage){
       try{        
         BoardDTO dto = new BoardDTO();
+        
+        //startRow 시작할 레코드의 번호
+        //nowpage 현재 페이지의 목록 번호  
+        //recordPerPage 한페이지에 보여줄 게시글 수
         
         int startRow = ((nowpage-1) * recordPerPage) ;
         int endRow   = recordPerPage;
@@ -64,17 +68,21 @@ public class BoardDAO {
         }//if end
 
       }catch(Exception e){
-         System.out.println("�옄�쑀寃뚯떆�뙋 紐⑸줉 �떎�뙣:"+e);
+         System.out.println("자유게시판 목록 실패:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }//end
       return list;
     }//list() end
     
-    //湲�寃��깋
+    //글검색
     public ArrayList<BoardDTO> list_search(int nowpage, int recordPerPage, String col, String search){
       try{        
         BoardDTO dto = new BoardDTO();
+        
+        //startRow 시작할 레코드의 번호
+        //nowpage 현재 페이지의 목록 번호  
+        //recordPerPage 한페이지에 보여줄 게시글 수
         
         int startRow = ((nowpage-1) * recordPerPage) ;
         int endRow   = recordPerPage;
@@ -114,31 +122,29 @@ public class BoardDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�옄�쑀寃뚯떆�뙋 紐⑸줉 �떎�뙣:" + e);
+        System.out.println("자유게시판 목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
-    // 紐⑸줉 理쒕� �럹�씠吏� �닔
+    
+    // 목록 최대 페이징 수
     public int count() {
       int count=0;
       try {
-        // DB�뿰寃�
-        con = dbopen.getConnection();
-        
-        //4)SQL臾� �옉�꽦
+    	  con = dbopen.getConnection();
           sql=new StringBuilder();
-          sql.append(" SELECT count(*) as cnt FROM board ");
+          sql.append(" SELECT count(*) AS cnt FROM board ");
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor 媛� �엳�뒗吏�?
+        if(rs.next()) {
           count = rs.getInt("cnt");
         }else {
-          System.out.println("�뻾 媛��닔瑜� �뼸吏�紐삵븿!!");
+          System.out.println("행 갯수를 얻지 못 함!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" 移댁슫�듃�떎�뙣:" + e);
+        System.out.println(" 카운트실패:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
@@ -169,7 +175,7 @@ public class BoardDAO {
             dto.setBad(rs.getInt("bad"));
         }
       }catch(Exception e){
-         System.out.println("�옄�쑀寃뚯떆�뙋 蹂닿린 �떎�뙣:"+e);
+         System.out.println("자유게시판 보기 실패:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }//end
@@ -184,7 +190,6 @@ public class BoardDAO {
         sql.append(" INSERT INTO board(postno, title, contents, image_name, post_date, id, view, good, bad)");
         sql.append(" VALUES((select ifnull(max(postno),0)+1 from board as TB),");
         sql.append(" ?, ?, ?, now(), ?, ?, ?, ?)");
-       
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setString(1, dto.getTitle());
         pstmt.setString(2, dto.getContents());
@@ -195,7 +200,7 @@ public class BoardDAO {
         pstmt.setInt(7, dto.getBad());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("�옄�쑀寃뚯떆臾� �벑濡앹떎�뙣"+e);
+          System.out.println("자유게시판 등록 실패"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
@@ -207,13 +212,13 @@ public class BoardDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" DELETE FROM board");
-        sql.append(" WHERE postno=?");  
+        sql.append(" DELETE FROM board ");
+        sql.append(" WHERE postno=? ");  
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setInt(1, postno);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("�궘�젣�떎�뙣"+e);
+          System.out.println("자유게시판 삭제 실패"+e);
       } finally {
           dbclose.close(con, pstmt);
       }//end
@@ -225,9 +230,9 @@ public class BoardDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" UPDATE board");
-        sql.append(" SET title=?, contents=?, image_name=?");
-        sql.append(" WHERE postno=?"); 
+        sql.append(" UPDATE board ");
+        sql.append(" SET title=?, contents=?, image_name=? ");
+        sql.append(" WHERE postno=? "); 
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setString(1, dto.getTitle());
         pstmt.setString(2, dto.getContents());
@@ -236,41 +241,40 @@ public class BoardDAO {
         cnt = pstmt.executeUpdate();
 
       } catch (Exception e) {
-        System.out.println("�닔�젙�떎�뙣"+e);
+        System.out.println("자유게시판 수정 실패"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//update() end 
     
-    //議고쉶�닔 利앷�
+    //조회 수 증가
     public int vupdate(int postno){
       int cnt = 0; 
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" UPDATE board");
+        sql.append(" UPDATE board ");
         sql.append(" SET view=view+1 ");
-        sql.append(" WHERE postno=?"); 
+        sql.append(" WHERE postno=? "); 
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setInt(1, postno);        
         cnt = pstmt.executeUpdate();
-
       } catch (Exception e) {
-        System.out.println("議고쉶�닔 �떎�뙣"+e);
+        System.out.println("조회수 증가 실패"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//vupdate() end 
     
-    //醫뗭븘�슂 利앷�
+    //좋아요 증가
     public int gupdate(int postno){
       int cnt = 0; 
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" UPDATE board");
+        sql.append(" UPDATE board ");
         sql.append(" SET good=good+1 ");
         sql.append(" WHERE postno=?"); 
         pstmt = con.prepareStatement(sql.toString());
@@ -278,28 +282,27 @@ public class BoardDAO {
         cnt = pstmt.executeUpdate();
 
       } catch (Exception e) {
-        System.out.println("醫뗭븘�슂 �떎�뙣"+e);
+        System.out.println("좋아요 증가 실패"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//gupdate() end 
     
-    //�떕�뼱�슂 利앷�
+    //싫어요 증가
     public int bupdate(int postno){
       int cnt = 0; 
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" UPDATE board");
+        sql.append(" UPDATE board ");
         sql.append(" SET bad=bad+1 ");
-        sql.append(" WHERE postno=?"); 
+        sql.append(" WHERE postno=? "); 
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setInt(1, postno);        
         cnt = pstmt.executeUpdate();
-
       } catch (Exception e) {
-        System.out.println("�떕�뼱�슂 �떎�뙣"+e);
+        System.out.println("싫어요 증가 실패"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end

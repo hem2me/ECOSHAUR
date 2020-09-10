@@ -18,7 +18,7 @@ public class NoticeCont {
   @Autowired
   NoticeDAO dao;
 
-  //ê³µì§€ì‚¬í•­ ëª©ë¡
+  //°øÁö»çÇ× ¸ñ·Ï
   @RequestMapping("Notice.do")
   public ModelAndView Notice(int nowpage) {
     int recordPerPage = 8;
@@ -34,24 +34,24 @@ public class NoticeCont {
     return mav;
   }
 
-  //ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
+  //°øÁö»çÇ× »ó¼¼º¸±â
   @RequestMapping("NRead.do")
   public ModelAndView Nread(int postno) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("community/NRead");
-    //ì¡°íšŒìˆ˜ ì¦ê°€
+    //Á¶È¸¼ö Áõ°¡
     dao.vupdate(postno);
     mav.addObject("dto", dao.read(postno));
     return mav;
   }
   
-  //ê³µì§€ì‚¬í•­ ì‘ì„± í˜ì´ì§€ í˜¸ì¶œ
+  //°øÁö»çÇ× ÀÛ¼º ÆäÀÌÁö È£Ãâ
   @RequestMapping(value = "NCreate.do", method = RequestMethod.GET)
   public String NCreate() {
     return "community/NCreate";
   }
 
-  //ê³µì§€ì‚¬í•­ ì‘ì„±
+  //°øÁö»çÇ× ÀÛ¼º
   @RequestMapping(value = "NCreate.do", method = RequestMethod.POST)
   public ModelAndView NCreate(NoticeDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -66,14 +66,14 @@ public class NoticeCont {
 
     int cnt = dao.create(dto);
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ê³µì§€ì‚¬í•­ ì‘ì„±ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>°øÁö»çÇ× ÀÛ¼ºÀ» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ê³µì§€ì‚¬í•­ ì‘ì„±ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>°øÁö»çÇ× ÀÛ¼ºÀ» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
-  //ê³µì§€ì‚¬í•­ ìˆ˜ì • í˜ì´ì§€ í˜¸ì¶œ
+  //°øÁö»çÇ× ¼öÁ¤ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value="NUpdate.do", method=RequestMethod.GET)
   public ModelAndView NUpdate(NoticeDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -82,7 +82,7 @@ public class NoticeCont {
     return mav;
   }
   
-  //ê³µì§€ì‚¬í•­ ìˆ˜ì • 
+  //°øÁö»çÇ× ¼öÁ¤ 
   @RequestMapping(value="NUpdate.do", method=RequestMethod.POST)
   public ModelAndView NUpdate(NoticeDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -90,35 +90,35 @@ public class NoticeCont {
     
     String basePath = req.getRealPath("/community/storage");
     
-    //ê¸°ì¡´ì— ì €ì¥ëœ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+    //±âÁ¸¿¡ ÀúÀåµÈ Á¤º¸ °¡Á®¿À±â
     NoticeDTO oldDTO = dao.read(dto.getPostno());
 
     MultipartFile posterMF = dto.getPosterMF();    
     if(posterMF.getSize()>0) {
       
-      //1)íŒŒì¼ì„ ìˆ˜ì •í•  ê²½ìš°
-      //ì‹ ê·œ íŒŒì¼ ì €ì¥
+      //1)ÆÄÀÏÀ» ¼öÁ¤ÇÒ °æ¿ì
+      //½Å±Ô ÆÄÀÏ ÀúÀå
       String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
       dto.setImage_name(poster);      
     }else {
       
-      //2)íŒŒì¼ì„ ìˆ˜ì •í•˜ì§€ ì•Šì„ ê²½ìš°
-      //ê¸°ì¡´ íŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°
+      //2)ÆÄÀÏÀ» ¼öÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì
+      //±âÁ¸ ÆÄÀÏ ºÒ·¯¿À±â
       dto.setImage_name(oldDTO.getImage_name());
     }
        
     int cnt = dao.update(dto);
     if(cnt == 0) {
-      mav.addObject("msg",  "<p>ê¸€ ìˆ˜ì •ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>±Û ¼öÁ¤À» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ê¸€ ìˆ˜ì •ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>±Û ¼öÁ¤À» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
   
   
-  //ê³µì§€ì‚¬í•­ ì‚­ì œ í˜ì´ì§€ í˜¸ì¶œ
+  //°øÁö»çÇ× »èÁ¦ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value="NDelete.do", method=RequestMethod.GET)
   public ModelAndView NDelete(NoticeDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -127,16 +127,16 @@ public class NoticeCont {
     return mav;
   }
   
-  //ê³µì§€ì‚¬í•­ ì‚­ì œ
+  //°øÁö»çÇ× »èÁ¦
   @RequestMapping(value = "NDelete.do", method = RequestMethod.POST)
   public ModelAndView NDelete(NoticeDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();  
     mav.setViewName("community/NResult"); 
     int cnt = dao.delete(dto.getPostno());
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ê³µì§€ì‚¬í•­ ì‚­ì œë¥¼ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>°øÁö»çÇ× »èÁ¦¸¦ ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ì •ìƒì ìœ¼ë¡œ ê³µì§€ì‚¬í•­ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>Á¤»óÀûÀ¸·Î °øÁö»çÇ×ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù!</p>");
     }
     return mav;
   }

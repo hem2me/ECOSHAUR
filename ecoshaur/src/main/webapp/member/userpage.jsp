@@ -88,22 +88,6 @@ input.hidden {
                         	</ul>
                         </div>
                    </div>
-                   <div class="card-body border-top">
-                        <h3 class="font-16">포인트</h3>
-                        <div class="">
-                             <ul class="list-unstyled mb-0">
-                       			<li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>${dto.point}점</li>
-                       		</ul>
-                        </div>
-                   </div>
-                   <div class="card-body border-top">
-                        <h3 class="font-16">좋아요</h3>
-                        <div class="">
-                             <ul class="list-unstyled mb-0">
-                        		<li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>${dto.likecnt}개</li>
-                        	</ul>
-                        </div>
-                   </div>
              </div>
         </div>
                       
@@ -170,7 +154,6 @@ input.hidden {
              </div>
         </div>
    </div>
-   
-
-<!-- 본문 끝 -->		
+<!-- 본문 끝 -->
+		
 <%@ include file="../footer.jsp" %>

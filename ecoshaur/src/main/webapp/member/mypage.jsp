@@ -3,13 +3,12 @@
 <%@ include file="../header.jsp"%>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <link href="./assets/libs/css/mypage.css" rel="stylesheet" type="text/css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/libs/css/style.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/libs/css/style.css">
+<link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 <style>
@@ -29,12 +28,7 @@ input.hidden {
 	 .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}	
 </style>
 
-
- <!-- ============================================================== -->
-        
-                    <!-- ============================================================== -->
-                    <!-- pageheader -->
-                    <!-- ============================================================== -->
+<!-- 본문 시작 mypage.jsp-->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -113,6 +107,11 @@ input.hidden {
                             <a class="btn btn-success" href="ModifyForm.do?id=${id }" >수정</a>
 							<a href="delete.do" class="btn btn-danger">탈퇴</a>
 							<a class="btn btn-primary" href="logout.do">로그아웃</a>
+							<c:choose>
+								<c:when  test="${grade eq 'M'}">
+              						<a class="btn btn-warning" href="admin/index.do">관리자페이지</a>
+              					</c:when>
+              				</c:choose>
                             <!-- ============================================================== -->
                             <!-- end card profile -->
                             <!-- ============================================================== -->
@@ -130,13 +129,13 @@ input.hidden {
                             <div class="influence-profile-content pills-regular">
                                 <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">포인트 내역</a>
+                                        <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">이용내역</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">활동내역</a>
+                                        <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">주문내역</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">게시판 글 목록</a>
+                                        <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">활동내역</a>
                                     </li>
                                     
                                 </ul>
@@ -197,7 +196,7 @@ input.hidden {
 			                                	
 			                                	<c:choose>
 			                                		<c:when test="${(dto.image_name eq '') or (dto.image_name == null)}">
-			                                    		<img class="mr-3 user-avatar-lg rounded" src="./assets/images/avatar-1.jpg">
+			                                    		<img class="mr-3 user-avatar-lg rounded" src="./assets/images/logo/ㄹㅇ공룡.png">
 			                                    	</c:when>
 			                                    	<c:otherwise>
 			                                    		<img class="mr-3 user-avatar-lg rounded" src="./community/storage/${dto.image_name }">
@@ -220,10 +219,10 @@ input.hidden {
 		                             <div class="media mt-3" style="padding-left: 3%;">
 			                                 <c:choose>
 		                                		<c:when test="${(dto.image_name eq '') or (dto.image_name == null)}">
-		                                    		<img class="mr-3 user-avatar-lg rounded" src="./assets/images/avatar-1.jpg">
+		                                    		<img class="mr-3 user-avatar-lg rounded" src="./assets/images/logo/ㄹㅇ공룡.png">
 		                                    	</c:when>
 		                                    	<c:otherwise>
-		                                    		<img class="mr-3 user-avatar-lg rounded" src="./community/storage/${dto.image_name }">
+		                                    		<img class="mr-3 user-avatar-lg rounded" src="./community/storage/${dto.image_name}">
 		                                    	</c:otherwise>
 		                                    </c:choose>
 		                                 <div class="media-body">
@@ -353,7 +352,6 @@ input.hidden {
 			<script>alert('잘못된 요청입니다'); window.location.href = './';</script>
 	</c:otherwise>
               </c:choose>
-   
-
-<!-- 본문 끝 -->		
+<!-- 본문 끝 -->
+		
 <%@ include file="../footer.jsp" %>

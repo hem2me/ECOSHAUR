@@ -16,9 +16,6 @@ import net.utility.DBOpen;
 import net.utility.Utility;
 
 @Component
-
-
-
 public class AdminDAO {
     @Autowired
     private DBOpen dbopen;
@@ -98,7 +95,7 @@ public class AdminDAO {
       return cnt;
     }//read() end
     
-    // 총 주문수
+    // 총 주문 수
     public int total_order() {
       int cnt=0;
       try {
@@ -111,7 +108,6 @@ public class AdminDAO {
         if(rs.next()) {
           cnt=rs.getInt("cnt");
         }//if end
-
       } catch (Exception e) {
           System.out.println("총 주문 수 가져오기 실패"+e);
       } finally {

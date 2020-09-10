@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-
 <!-- 본문 시작 BCreate.jsp-->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -22,8 +21,6 @@
 
 
 <div class="container">
-<br><br><br><br><br><br><br><br>
-	<H3>게시물 등록</H3>
 <br><br>	
   <form method="post"
         action="BCreate.do"
@@ -37,8 +34,9 @@
     </tr>
     <tr>
       <th>내용</th>
-	  <td><textarea style="resize: none;" name="contents" 
-	  rows="10" cols="100" style="width: 100%;"></textarea></td>
+	  <td>
+	  	<textarea style="resize: none;" name="contents" rows="10" cols="100" style="width: 100%;"></textarea>
+	  </td>
     </tr>
     <tr>
       <th>이미지</th>
@@ -46,13 +44,12 @@
     </tr>    
       <input type='hidden' name='id' value='${id }' size='50'>        
   </table>      
-<br><br> 
-<div style= "text-align:center;">
-  <input type='submit' value='등록' class="btn btn-success">
-  <a href="Board.do?nowpage=1&search" class="btn btn-success">등록취소</a>
-</div> 
+	<br><br> 
+	<div style="text-align:center;">
+  		<input type='submit' value='등록' class="btn btn-success">
+  		<a href="Board.do?nowpage=1&search" class="btn btn-success">등록취소</a>
+	</div> 
   </form>
-</body>
 
 <!-- ckeditor 적용 -->
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
@@ -60,13 +57,13 @@
 <script>
  var ckeditor_config = {
    resize_enaleb : false,
-   enterMode : CKEDITOR.ENTER_BR,     //엔터키 입력시 br 태그 변경
-   shiftEnterMode : CKEDITOR.ENTER_P, //엔터키 입력시 p 태그로 변경
+   enterMode : CKEDITOR.ENTER_BR,     //엔터키 입력 시 br 태그 변경
+   shiftEnterMode : CKEDITOR.ENTER_P, //엔터키 입력 시 p 태그로 변경
    };
  
  CKEDITOR.replace("contents", ckeditor_config); //적용할 id값
 </script>
 <!-- ckeditor 적용 -->
-<!-- 본문 끝 -->	
-	
+<!-- 본문 끝 -->		
+
 <%@ include file="../footer.jsp" %>

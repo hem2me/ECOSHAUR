@@ -1,8 +1,8 @@
+<%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 Board.jsp-->
-
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">

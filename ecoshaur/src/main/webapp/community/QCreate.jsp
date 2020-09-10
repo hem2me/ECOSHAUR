@@ -21,7 +21,6 @@
 </div>
 
 <div class="container">
-
 <br><br>
 	<form method="post" action="QCreate.do" enctype="multipart/form-data" onsubmit="return qnaCheck(this)">
 		<table align='center' border='1px' cellspacing='0px' cellpadding='5px'>
@@ -56,12 +55,12 @@
         </c:choose>
 		</table>
 		<br><br>
-		<div style= "text-align:center;">
-		<input type='submit' value='등록' class="btn btn-success">
-        <a href="Qna.do" class="btn btn-success">등록취소</a>
+		<div style="text-align:center;">
+			<input type='submit' value='등록' class="btn btn-success">
+        	<a href="Qna.do" class="btn btn-success">등록취소</a>
         </div>
 	</form>
-</body>
+
 <!-- ckeditor 적용 -->
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

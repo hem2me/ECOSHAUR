@@ -14,11 +14,11 @@ public class QnaDTO {
   private int pcode;
   private int ccode;
   
-  //1)ìŠ¤í”„ë§ íŒŒì¼ ê°ì²´ ë©¤ë²„ ë³€ìˆ˜ ì„ ì–¸
+  //1)½ºÇÁ¸µ ÆÄÀÏ °´Ã¼ ¸â¹ö º¯¼ö ¼±¾ğ
   //<input type='file' name='posterMF'>
   private MultipartFile posterMF;
  
-  //2)getterì™€ setterì‘ì„±
+  //2)getter¿Í setterÀÛ¼º
   public MultipartFile getPosterMF() {
     return posterMF;
   }

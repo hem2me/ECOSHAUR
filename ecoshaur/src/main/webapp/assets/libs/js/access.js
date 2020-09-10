@@ -8,7 +8,7 @@ function signUp(f) {
     }
     
     if(pw.length<4){
-		alert("비밀번호 4글자이상 입력해 주세요");
+		alert("비밀번호 4글자 이상 입력해 주세요");
 		f.passwd.focus();
 		return false;
 	}//if end

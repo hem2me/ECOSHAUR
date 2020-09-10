@@ -2,8 +2,7 @@
 <%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
-<link rel="stylesheet"
-   href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <link  href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
@@ -17,8 +16,7 @@ p {
 }
 </style>
 
-<br>
-<!-- 본문 시작 Category.jsp-->
+<!-- 본문 시작 RentalRead.jsp-->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -34,6 +32,7 @@ p {
         </div>
     </div>
 </div>
+
 <div class="container">
    <div class="row mt-4">
       <div class="col-lg-4 text-center border-right border-secondery">

@@ -51,13 +51,12 @@
 		</table>
 		<br>
 		<br>
-		<div class='bottom'>
-			<input type='submit' value='등록'> <input type='button'
-				value='문의취소하기' onclick="location.href='Qna.do'">
+		<div class='bottom' align="center">
+			<input type='submit' value='등록하기' class="btn btn-success">
+			<input type='button' value='문의취소하기' onclick="location.href='Qna.do'" class="btn btn-success">
 		</div>
-
 	</form>
-</body>
+	
 <!-- ckeditor 적용 -->
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -71,6 +70,6 @@
  CKEDITOR.replace("contents", ckeditor_config); //적용할 id값
 </script>
 <!-- ckeditor 적용 -->
-<br><br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->
+
 <%@ include file="../footer.jsp"%>

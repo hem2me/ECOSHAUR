@@ -18,7 +18,7 @@ public class QnaCont {
   @Autowired
   QnaDAO dao;
 
-  //Qna í˜ì´ì§€ í˜¸ì¶œ
+  //Qna ÆäÀÌÁö È£Ãâ
   @RequestMapping("Qna.do")
   public ModelAndView Qna() {
     ModelAndView mav = new ModelAndView();
@@ -26,7 +26,7 @@ public class QnaCont {
     return mav;
   }
   
-  //Qna ëª©ë¡
+  //Qna ¸ñ·Ï
   @RequestMapping("QList.do")
   public ModelAndView QList(int nowpage) {
     int recordPerPage = 8;
@@ -42,7 +42,7 @@ public class QnaCont {
     return mav;
   }
 
-  //Qna ìƒì„¸ë³´ê¸°
+  //Qna »ó¼¼º¸±â
   @RequestMapping("QRead.do")
   public ModelAndView Qread(int postno) {
     ModelAndView mav = new ModelAndView();
@@ -51,13 +51,13 @@ public class QnaCont {
     return mav;
   }
   
-  //Qna ì‘ì„± í˜ì´ì§€ í˜¸ì¶œ
+  //Qna ÀÛ¼º ÆäÀÌÁö È£Ãâ
   @RequestMapping(value = "QCreate.do", method = RequestMethod.GET)
   public String QCreate() {
     return "community/QCreate";
   }
 
-  //Qna ì‘ì„±
+  //Qna ÀÛ¼º
   @RequestMapping(value = "QCreate.do", method = RequestMethod.POST)
   public ModelAndView QCreate(QnaDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -72,14 +72,14 @@ public class QnaCont {
 
     int cnt = dao.create(dto);
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ë¬¸ì˜ì‚¬í•­ ì‘ì„±ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>¹®ÀÇ»çÇ× ÀÛ¼ºÀ» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ë¬¸ì˜ì‚¬í•­ ì‘ì„±ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>¹®ÀÇ»çÇ× ÀÛ¼ºÀ» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
-  //Qna ë‹µë³€ í˜ì´ì§€ í˜¸ì¶œ
+  //Qna ´äº¯ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value = "QRes.do", method = RequestMethod.GET)
   public ModelAndView QRes(QnaDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -90,7 +90,7 @@ public class QnaCont {
     return mav;
   }
   
-  //Qna ë‹µë³€ ì‘ì„±
+  //Qna ´äº¯ ÀÛ¼º
   @RequestMapping(value = "QRes.do", method = RequestMethod.POST)
   public ModelAndView QRes(QnaDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -105,14 +105,14 @@ public class QnaCont {
 
     int cnt = dao.Rcreate(dto);
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ë¬¸ì˜ì‚¬í•­ ì‘ì„±ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>¹®ÀÇ»çÇ× ÀÛ¼ºÀ» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ë¬¸ì˜ì‚¬í•­ ì‘ì„±ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>¹®ÀÇ»çÇ× ÀÛ¼ºÀ» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
-  //Qna ì‚­ì œ í˜ì´ì§€ í˜¸ì¶œ
+  //Qna »èÁ¦ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value="QDelete.do", method=RequestMethod.GET)
   public ModelAndView QDelete(QnaDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -121,16 +121,16 @@ public class QnaCont {
     return mav;
   }
   
-  //Qna ì‚­ì œ
+  //Qna »èÁ¦
   @RequestMapping(value = "QDelete.do", method = RequestMethod.POST)
   public ModelAndView QDelete(QnaDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();  
     mav.setViewName("community/QResult"); 
     int cnt = dao.delete(dto.getPostno());
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ë¬¸ì˜ì‚¬í•­ ì‚­ì œë¥¼ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>¹®ÀÇ»çÇ× »èÁ¦¸¦ ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ì •ìƒì ìœ¼ë¡œ ë¬¸ì˜ì‚¬í•­ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>Á¤»óÀûÀ¸·Î ¹®ÀÇ»çÇ×ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù!</p>");
     }
     return mav;
   }

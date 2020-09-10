@@ -20,7 +20,7 @@ public class BoardCont {
   @Autowired
   BoardDAO dao;
 
-  //ê¸€ ëª©ë¡
+  //±Û ¸ñ·Ï
   @RequestMapping("Board.do")
   public ModelAndView Board(int nowpage,String col, String search) {
     int recordPerPage = 8;
@@ -40,24 +40,24 @@ public class BoardCont {
   
   
   
-  //ê¸€ ìƒì„¸ë³´ê¸°
+  //±Û »ó¼¼º¸±â
   @RequestMapping("BRead.do")
   public ModelAndView Bread(int postno) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("community/BRead");
-    //ì¡°íšŒìˆ˜ ì¦ê°€
+    //Á¶È¸¼ö Áõ°¡
     dao.vupdate(postno);
     mav.addObject("dto", dao.read(postno));
     return mav;
   }
 
-  //ê¸€ ì‘ì„± í˜ì´ì§€ í˜¸ì¶œ
+  //±Û ÀÛ¼º ÆäÀÌÁö È£Ãâ
   @RequestMapping(value = "BCreate.do", method = RequestMethod.GET)
   public String BCreate() {
     return "community/BCreate";
   }
 
-  //ê¸€ ì‘ì„±
+  //±Û ÀÛ¼º
   @RequestMapping(value = "BCreate.do", method = RequestMethod.POST)
   public ModelAndView BCreate(BoardDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -72,14 +72,14 @@ public class BoardCont {
 
     int cnt = dao.create(dto);
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ê¸€ ì‘ì„±ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>±Û ÀÛ¼ºÀ» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ê¸€ ì‘ì„±ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>±Û ÀÛ¼ºÀ» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
 
-  //ê¸€ ìˆ˜ì • í˜ì´ì§€ í˜¸ì¶œ
+  //±Û ¼öÁ¤ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value="BUpdate.do", method=RequestMethod.GET)
   public ModelAndView BUpdate(BoardDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -88,7 +88,7 @@ public class BoardCont {
     return mav;
   }
   
-  //ê¸€ ìˆ˜ì • 
+  //±Û ¼öÁ¤ 
   @RequestMapping(value="BUpdate.do", method=RequestMethod.POST)
   public ModelAndView BUpdate(BoardDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();
@@ -96,33 +96,33 @@ public class BoardCont {
     
     String basePath = req.getRealPath("/community/storage");
     
-    //ê¸°ì¡´ì— ì €ì¥ëœ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+    //±âÁ¸¿¡ ÀúÀåµÈ Á¤º¸ °¡Á®¿À±â
     BoardDTO oldDTO = dao.read(dto.getPostno());
 
     MultipartFile posterMF = dto.getPosterMF();    
     if(posterMF.getSize()>0) {
       
-      //1)íŒŒì¼ì„ ìˆ˜ì •í•  ê²½ìš°
-      //ì‹ ê·œ íŒŒì¼ ì €ì¥
+      //1)ÆÄÀÏÀ» ¼öÁ¤ÇÒ °æ¿ì
+      //½Å±Ô ÆÄÀÏ ÀúÀå
       String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
       dto.setImage_name(poster);      
     }else {
       
-      //2)íŒŒì¼ì„ ìˆ˜ì •í•˜ì§€ ì•Šì„ ê²½ìš°
-      //ê¸°ì¡´ íŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°
+      //2)ÆÄÀÏÀ» ¼öÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì
+      //±âÁ¸ ÆÄÀÏ ºÒ·¯¿À±â
       dto.setImage_name(oldDTO.getImage_name());
     }
        
     int cnt = dao.update(dto);
     if(cnt == 0) {
-      mav.addObject("msg",  "<p>ê¸€ ìˆ˜ì •ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>±Û ¼öÁ¤À» ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ê¸€ ìˆ˜ì •ì„ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>±Û ¼öÁ¤À» ¼º°øÇÏ¿´½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
-  //ê¸€ ì‚­ì œ í˜ì´ì§€ í˜¸ì¶œ
+  //±Û »èÁ¦ ÆäÀÌÁö È£Ãâ
   @RequestMapping(value="BDelete.do", method=RequestMethod.GET)
   public ModelAndView BDelete(BoardDTO dto) {
     ModelAndView mav = new ModelAndView();
@@ -131,21 +131,21 @@ public class BoardCont {
     return mav;
   }
    
-  //ê¸€ ì‚­ì œ
+  //±Û »èÁ¦
   @RequestMapping(value = "BDelete.do", method = RequestMethod.POST)
   public ModelAndView BDelete(BoardDTO dto, HttpServletRequest req) {
     ModelAndView mav = new ModelAndView();  
     mav.setViewName("community/BResult"); 
     int cnt = dao.delete(dto.getPostno());
     if (cnt == 0) {
-      mav.addObject("msg",  "<p>ê¸€ì‚­ì œë¥¼ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.ã… ã… </p>");
+      mav.addObject("msg",  "<p>±Û»èÁ¦¸¦ ½ÇÆĞÇÏ¿´½À´Ï´Ù.¤Ğ¤Ğ</p>");
     } else {
-      mav.addObject("msg",  "<p>ì •ìƒì ìœ¼ë¡œ ê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤!</p>");
+      mav.addObject("msg",  "<p>Á¤»óÀûÀ¸·Î ±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù!</p>");
     }
     return mav;
   }
   
-  //ì¢‹ì•„ìš”
+  //ÁÁ¾Æ¿ä
   @RequestMapping(value="Good.do",method=RequestMethod.GET)
   public ModelAndView Good(int postno) {
     ModelAndView mav = new ModelAndView();
@@ -155,7 +155,7 @@ public class BoardCont {
     return mav;
   }
   
-  //ì‹«ì–´ìš”
+  //½È¾î¿ä
   @RequestMapping(value="Bad.do",method=RequestMethod.GET)
   public ModelAndView Bad(int postno) {
     ModelAndView mav = new ModelAndView();

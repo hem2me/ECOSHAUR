@@ -46,8 +46,10 @@
 			</tr>
 		</table>
 		<br><br>
-		<input type='submit' value='등록' class="btn btn-success">
-        <a href="Notice.do?nowpage=1" class="btn btn-success">등록취소</a>
+		<div style="text-align:center;">
+			<input type='submit' value='등록' class="btn btn-success">
+        	<a href="Notice.do?nowpage=1" class="btn btn-success">등록취소</a>
+        </div>
 	</form>
 </body>
 </c:when><c:otherwise>
@@ -56,6 +58,7 @@
 	window.location.href = './Notice.do?nowpage=1';
 	</script>
 </c:otherwise></c:choose>
+
 <!-- ckeditor 적용 -->
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -69,7 +72,6 @@
  CKEDITOR.replace("contents", ckeditor_config); //적용할 id값
 </script>
 <!-- ckeditor 적용 -->
-	
-<br><br><br><br><br><br><br><br>
+
 <!-- 본문 끝 -->		
 <%@ include file="../footer.jsp" %>

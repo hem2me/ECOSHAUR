@@ -3,6 +3,7 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 NUpdate.jsp-->
+<body>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -52,12 +53,12 @@
       </td>  
     </tr>             
   </table>    
-	<br><br>
-  <input type='submit' value='수정' class="btn btn-success">
-  <a href="Notice.do?nowpage=1" class="btn btn-success">수정취소</a>
+  <br><br>
+  <div style="text-align:center;">
+  	<input type='submit' value='수정' class="btn btn-success">
+  	<a href="Notice.do?nowpage=1" class="btn btn-success">수정취소</a>
+  </div>
   </form>
-</body>
-
 
 <!-- ckeditor 적용 -->
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
@@ -72,6 +73,7 @@
  CKEDITOR.replace("contents", ckeditor_config); //적용할 id값
 </script>
 <!-- ckeditor 적용 -->
-<br><br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->
+
 <%@ include file="../footer.jsp"%>

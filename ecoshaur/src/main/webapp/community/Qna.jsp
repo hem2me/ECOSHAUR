@@ -70,7 +70,9 @@
 <a href="QCreate.do" class="btn btn-success">문의하기</a>
 	<c:choose><c:when test="${grade eq 'M'}"> <a href="QList.do?nowpage=1" class="btn btn-success">문의목록 보기</a> </c:when>
 	<c:otherwise></c:otherwise></c:choose>
+</div>
+</div>
+</div>
 </div>     	 		
-<br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
 <%@ include file="../footer.jsp" %>

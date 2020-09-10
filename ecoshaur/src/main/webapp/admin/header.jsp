@@ -16,12 +16,12 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.do">Ecoshaur</a>
+                <a class="navbar-brand" href="http://hem2me.cafe24.com/index.do">Ecoshaur</a>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="../">
-                            	<img src="../assets/images/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
+                            <a class="nav-link nav-user-img" href="http://hem2me.cafe24.com/admin/index.do">
+                            	<img src="../assets/images/logo/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
                             </a>
                         </li>
                     </ul>

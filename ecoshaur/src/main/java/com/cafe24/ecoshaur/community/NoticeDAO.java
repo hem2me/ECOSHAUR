@@ -61,32 +61,32 @@ public class NoticeDAO {
         }
 
       }catch(Exception e){
-         System.out.println("ê³µì§€ì‚¬í•­ ëª©ë¡ ì‹¤íŒ¨:"+e);
+         System.out.println("°øÁö»çÇ× ¸ñ·Ï ½ÇÆĞ:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }
       return list;
     }//list() end
     
-    // ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+    // ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int count() {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt FROM notice ");
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("í–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("Çà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
@@ -115,7 +115,7 @@ public class NoticeDAO {
             dto.setView(rs.getInt("view"));
         }
       }catch(Exception e){
-         System.out.println("ê³µì§€ì‚¬í•­ ë³´ê¸° ì‹¤íŒ¨:"+e);
+         System.out.println("°øÁö»çÇ× º¸±â ½ÇÆĞ:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }
@@ -140,7 +140,7 @@ public class NoticeDAO {
 
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("ê³µì§€ì‚¬í•­ ë“±ë¡ì‹¤íŒ¨"+e);
+          System.out.println("°øÁö»çÇ× µî·Ï½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
@@ -158,7 +158,7 @@ public class NoticeDAO {
         pstmt.setInt(1, postno);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("ì‚­ì œì‹¤íŒ¨"+e);
+          System.out.println("»èÁ¦½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt);
       }//end
@@ -182,14 +182,14 @@ public class NoticeDAO {
         cnt = pstmt.executeUpdate();
 
       } catch (Exception e) {
-        System.out.println("ìˆ˜ì •ì‹¤íŒ¨"+e);
+        System.out.println("¼öÁ¤½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//update() end 
     
-    //ì¡°íšŒìˆ˜ ì¦ê°€
+    //Á¶È¸¼ö Áõ°¡
     public int vupdate(int postno){
       int cnt = 0; 
       try {
@@ -203,7 +203,7 @@ public class NoticeDAO {
         cnt = pstmt.executeUpdate();
 
       } catch (Exception e) {
-        System.out.println("ì¡°íšŒìˆ˜ ì‹¤íŒ¨"+e);
+        System.out.println("Á¶È¸¼ö ½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end

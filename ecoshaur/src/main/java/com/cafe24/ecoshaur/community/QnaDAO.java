@@ -64,32 +64,32 @@ public class QnaDAO {
         }
 
       }catch(Exception e){
-         System.out.println("ì§ˆë¬¸ëª©ë¡ ì‹¤íŒ¨:"+e);
+         System.out.println("Áú¹®¸ñ·Ï ½ÇÆĞ:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }
       return list;
     }//list() end
     
-    // ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+    // ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int count() {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt FROM qna ");
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("í–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("Çà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
@@ -119,7 +119,7 @@ public class QnaDAO {
             dto.setCcode(rs.getInt("ccode"));
         }
       }catch(Exception e){
-         System.out.println("ë¬¸ì˜ëª©ë¡ ë³´ê¸° ì‹¤íŒ¨:"+e);
+         System.out.println("¹®ÀÇ¸ñ·Ï º¸±â ½ÇÆĞ:"+e);
       }finally{
          DBClose.close(con, pstmt, rs);
       }
@@ -145,7 +145,7 @@ public class QnaDAO {
 
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("ë¬¸ì˜ì‚¬í•­ ë“±ë¡ì‹¤íŒ¨"+e);
+          System.out.println("¹®ÀÇ»çÇ× µî·Ï½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
@@ -171,7 +171,7 @@ public class QnaDAO {
         pstmt.setInt(7, dto.getCcode());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("ë‹µë³€ë“±ë¡ ì‹¤íŒ¨"+e);
+          System.out.println("´äº¯µî·Ï ½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt, rs);
       }//end
@@ -189,7 +189,7 @@ public class QnaDAO {
         pstmt.setInt(1, postno);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-          System.out.println("ì‚­ì œì‹¤íŒ¨"+e);
+          System.out.println("»èÁ¦½ÇÆĞ"+e);
       } finally {
           dbclose.close(con, pstmt);
       }//end
@@ -214,7 +214,7 @@ public class QnaDAO {
         	  writer = rs.getString("id");
           }
         }catch(Exception e){
-           System.out.println("ë¬¸ì˜ëª©ë¡ ë³´ê¸° ì‹¤íŒ¨:"+e);
+           System.out.println("¹®ÀÇ¸ñ·Ï º¸±â ½ÇÆĞ:"+e);
         }finally{
            DBClose.close(con, pstmt, rs);
         }
