@@ -5,8 +5,6 @@
 <link href="assets/libs/css/category.css" rel="stylesheet" type="text/css">
 
 <!-- 본문 시작 CategoryDT.jsp-->
-
-<!-- 본문 시작 Category.jsp-->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -15,8 +13,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="Category.do?nowpage=1&col=&search=" class="breadcrumb-link">대여목록</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                        
+                        <li class="breadcrumb-item active" aria-current="page">                        
 				<c:choose>
 					<c:when test="${cg eq '컴퓨터'}"> 컴퓨터</c:when>
 					<c:when test="${cg eq 'TV/영상가전'}">TV/영상가전 </c:when>
@@ -24,8 +21,7 @@
 					<c:when test="${cg eq '콘솔/게이밍'}"> 콘솔/게이밍</c:when>
 					<c:when test="${cg eq '카메라'}"> 카메라 </c:when>
 				</c:choose>
-                        
-                        </li>
+                       </li>
                     </ol>
                 </nav>
             </div>
@@ -36,13 +32,12 @@
 <div class="container">
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
-
 	<div style="text-align:center;">
 		<a href="Rental_resister.do" class="btn btn-success">글 쓰기</a>
 	</div>
-	
 	</c:when>
 </c:choose>
+
 	<nav class="category">
 		<div class="list">
 			<ul class="menu"><!-- class="active" -->
@@ -130,6 +125,7 @@
 		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 		  </ul>
 		</nav>	
+		
 	<!-- 검색기능 -->
 	<div style="text-align:center;">
 		<form method="get" action="Category.do">
@@ -152,12 +148,11 @@
 			<input type="submit" class="btn btn-primary" value="Search">
 		</form>
 	</div>
-
+</div>
+</div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./assets/libs/js/category.js"></script>
-</div>
-</div>
 <!-- 본문 끝 -->	
 	
 <%@ include file="../footer.jsp" %>

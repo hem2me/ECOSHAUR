@@ -8,14 +8,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>ECOSHAUR</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -23,10 +21,8 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="assets/libs/css/style2.css" rel="stylesheet">
-
   <!-- =======================================================
   * Template Name: Imperial - v3.0.0
   * Template URL: https://bootstrapmade.com/imperial-free-onepage-bootstrap-theme/
@@ -42,9 +38,9 @@
     <div class="hero-container">
       <div class="wow fadeIn">
         <h1>Welcome to ECOSHAUR</h1>
-        <h2>우리는 <span class="typed" data-typed-items="사업자가 될 수도 있습니다, 대여자가 될 수도 있습니다, 렌탈러입니다"></span></h2>
+        <h2>우리는 <span class="typed" data-typed-items="사업자가 될 수 있습니다., 대여자가 될 수 있습니다., 렌탈러입니다."></span></h2>
         <div class="actions">
-          <a href="Point.do" class="btn-get-started">ECOSHAUR 시작하기</a>
+          <a href="Category.do?nowpage=1&col=&search=" class="btn-get-started">ECOSHAUR 시작하기</a>
         </div>
       </div>
     </div>
@@ -67,20 +63,19 @@
           <li><a href="#portfolio">RentalList</a></li>
           <li class="drop-down"><a href="">MyPage</a>
             <ul>
-              <li><a href="login.do">Login/Logout</a></li>
               	<c:choose>
 					<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
               			<li><a href="mypage.do">MyPage</a></li>
               		</c:when>
               		<c:otherwise>
-              			<li><a href="login.do">MyPage</a></li>
+                          <li><a href="login.do">SignIn/SignOut</a></li>
               		</c:otherwise>
               	</c:choose>
-              <c:choose>
-				<c:when  test="${grade eq 'M'}">
-              		<li><a href="admin/index.do">Admin</a></li>
-              	</c:when>
-              </c:choose>
+              	<c:choose>
+					<c:when  test="${grade eq 'M'}">
+              			<li><a href="admin/index.do">Admin</a></li>
+              		</c:when>
+              	</c:choose>
             </ul>
           </li>
         </ul>
@@ -104,28 +99,24 @@
           </div>
         </div>
       </div>
+      <br><br>
       <div class="container about-container wow fadeInUp">
         <div class="row">
-
           <div class="col-lg-6 about-img">
-            <img src="assets/images/ㄹㅇ공룡.png" alt="">
+            <img src="assets/images/logo/ㄹㅇ공룡.png" alt="">
           </div>
-
           <div class="col-md-6 about-content">
-            <h2 class="about-title">C2C	Rental Platform ECOSHAUR</h2>
+            <h2 class="about-title">ECOSHAUR에 오신 것을 환영합니다!</h2>
             <p class="about-text">
-             	 ECOSHAUR = ECOnomy + SHare + dinosAUR 
+             	ECOSHAUR는 ECOnomy + SHare + dinosAUR의 합성어로 C2C방식의 전자기기 대여 플랫폼입니다.
             </p>
             <p class="about-text">
-            ECOSHAUR란?
+            	사고는 싶은데 비싼 가격에 매번 돌아서야만 하셨나요? 창고에 쌓여만 가는 애물단지들을 어떻게 처분할지 고민되셨나요? 그렇다면 ECOSHAUR를 이용해보세요. 
             </p>
             <p class="about-text">
-              C2C(Consumer-to-consumer) 방식의 소비자와 소비자 간의 전자기기 대여 플래폼입니다. 
+            	번거로운 단계없이 편리하게 제품을 등록하고 다양한 카테고리로 원하는 제품을 찾을 수 있습니다.
+            	사이트 이용자의 자유도를 위해 관리자의 개입을 최소화하고 있으며 커뮤니티를 통해 원활한 의사소통을 할 수 있습니다.
             </p>
-            <p class="about-text">
-              	지나친 생산과 과소비의 시대에 협력소비/공유경제의 실현을 지향합니다. 
-            </p>
-            
           </div>
         </div>
       </div>
@@ -145,19 +136,19 @@
 
         <div class="row">
           <div class="col-md-4 service-item">
-            <div class="service-icon"><i class="fa fa-paper-plane"></i></div>
-            <h4 class="service-title"><a href="">사용자들과의 소통</a></h4>
-            <p class="service-description">사용자간의 원활한 소통을 위한 커뮤니티 공간이 준비되어 있습니다.</p>
-          </div>
-          <div class="col-md-4 service-item">
             <div class="service-icon"><i class="fa fa-bar-chart"></i></div>
-            <h4 class="service-title"><a href="">대여해주는 사람과 대여하는 사람간의 뛰어난 연결성</a></h4>
-            <p class="service-description">쉬운 상품 게시! 다양한 카테고리를 통해 원하는 상품을 대여할 수 있도록 노력하고 있습니다.</p>
+            <h4 class="service-title"><a href="Category.do?nowpage=1&col=&search=">거래의 편리성</a></h4>
+            <p class="service-description">다양한 카테고리와 쉬운 상품 게시를 통해 원하는 상품을 제공 및 대여할 수 있습니다.</p>
           </div>
           <div class="col-md-4 service-item">
             <div class="service-icon"><i class="fa fa-shopping-bag"></i></div>
-            <h4 class="service-title"><a href="">체계적인 보증금제도</a></h4>
-            <p class="service-description">대여물품이 파손되더라도 체계화된 처리로 만족스러운 대여가 되도록 노력하고 있습니다.</p>
+            <h4 class="service-title"><a href="Point.do">투명한 신뢰성</a></h4>
+            <p class="service-description">거래가 성공적으로 성사되면 쌓이는 포인트와 좋아요 순위로 회원들의 신뢰도를 확인할 수 있습니다.</p>
+          </div>
+          <div class="col-md-4 service-item">
+            <div class="service-icon"><i class="fa fa-paper-plane"></i></div>
+            <h4 class="service-title"><a href="Board.do?nowpage=1&col=&search=">사람과 사람 간의 연결성</a></h4>
+            <p class="service-description">커뮤니티 공간을 통해 사용자들과의 원활한 소통을 할 수 있습니다. </p>
           </div>
         </div>
       </div>
@@ -203,8 +194,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="copyright">
-          	개발자 : <strong> 송기환, 황정하, 김유진, 최지호, 안재원, 김윤호</strong>
-            
+          	개발자 : 김윤호, 송기환, 김유진, 황정하, 안재원, 최지호
           </div>
           <div class="credits">
             <!--
@@ -219,7 +209,8 @@
         </div>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer>
+  <!-- End Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -235,10 +226,8 @@
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/libs/js/main2.js"></script>
 
 </body>
-
 </html>

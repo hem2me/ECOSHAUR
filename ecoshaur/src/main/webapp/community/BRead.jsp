@@ -80,7 +80,7 @@
 	</c:when>
 </c:choose>
 	<br><br>
-	<a href="Board.do?nowpage=1&search" class="btn btn-success">돌아가기</a>
+	<a href="Board.do?nowpage=1&search" class="btn btn-success">목록보기</a>
 	
 <c:choose>
 	<c:when  test="${id.equalsIgnoreCase(dto.id) || grade eq 'M' }">

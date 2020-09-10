@@ -30,13 +30,10 @@ public class RentalCont {
 
   public RentalCont() {}
   
-//ì „ì²´ë³´ê¸° 
+//ÀüÃ¼º¸±â 
  @RequestMapping(value = "Category.do", method = RequestMethod.GET)
  public ModelAndView CategoryList(int nowpage, String col, String search) {
-   // ìƒí’ˆê°¯ìˆ˜ 0ê°œì¸ ìƒí’ˆë“¤ ìƒíƒœìˆ˜ì •
-   dao.update_quantity();
-   
-   // recordPerPage = í˜„ì¬í˜ì´ì§€ì— í‘œì‹œë  ê°¯ìˆ˜
+   // recordPerPage = ÇöÀçÆäÀÌÁö¿¡ Ç¥½ÃµÉ °¹¼ö
    int recordPerPage = 8;
    int endRow   = nowpage * recordPerPage;
 
@@ -56,12 +53,9 @@ public class RentalCont {
  }// CategoryList() end
  
  
-//ì†Œê·¸ë£¹
+//¼Ò±×·ì
 @RequestMapping(value = "CategoryDT.do", method = RequestMethod.GET)
 public ModelAndView CategoryDTList(String category, int nowpage, String col, String search) {
-  // ìƒí’ˆê°¯ìˆ˜ 0ê°œì¸ ìƒí’ˆë“¤ ìƒíƒœìˆ˜ì •
-  dao.update_quantity();
-  
   int recordPerPage = 8;
   int endRow   = nowpage * recordPerPage;
   
@@ -105,7 +99,7 @@ public ModelAndView testCheck(HttpServletRequest req, String cg, int nowpage) {
   return mav;
 }
  
-// ìƒí’ˆë“±ë¡
+// »óÇ°µî·Ï
 @RequestMapping(value = "Rental_resister.do", method = RequestMethod.GET)
 public ModelAndView Rental_resister() {
   ModelAndView mav = new ModelAndView();
@@ -123,11 +117,11 @@ public ModelAndView Rental_resister() {
    String code = dao.category_code(ctCode);
    dto.setCategory_code(code);
 
-   // ìƒí’ˆëª©ë¡ë²ˆí˜¸ ì‘ì—…
-   String number = dao.Max_code(code);        // ì¹´í…Œê³ ë¦¬ì½”ë“œì— í•´ë‹¹í•˜ëŠ” ìƒí’ˆëª©ë¡ë²ˆí˜¸ ìµœëŒ€ê°’ ê°€ì ¸ì˜¤ê¸°
-   String max_num = number.substring(7, 13);  // ë²ˆí˜¸ë¶€ë¶„ë§Œ ê°€ì ¸ì˜¤ê¸°
-   int Int_maxNum = Integer.parseInt(max_num); // ë²ˆí˜¸ë¥¼ ì •ìˆ˜ë¡œ ë°”ê¾¸ê¸°
-   String max_number = String.format("%06d", Int_maxNum+1); // 000001 í˜•ì‹ìœ¼ë¡œ ë°”ê¾¸ê¸°
+   // »óÇ°¸ñ·Ï¹øÈ£ ÀÛ¾÷
+   String number = dao.Max_code(code);        // Ä«Å×°í¸®ÄÚµå¿¡ ÇØ´çÇÏ´Â »óÇ°¸ñ·Ï¹øÈ£ ÃÖ´ë°ª °¡Á®¿À±â
+   String max_num = number.substring(7, 13);  // ¹øÈ£ºÎºĞ¸¸ °¡Á®¿À±â
+   int Int_maxNum = Integer.parseInt(max_num); // ¹øÈ£¸¦ Á¤¼ö·Î ¹Ù²Ù±â
+   String max_number = String.format("%06d", Int_maxNum+1); // 000001 Çü½ÄÀ¸·Î ¹Ù²Ù±â
    String product_no = code + "-"  + max_number;
    dto.setProduct_no(product_no);
 
@@ -148,9 +142,9 @@ public ModelAndView Rental_resister() {
    int cnt = dao.create(dto);
    
    if(cnt!=1) {
-     mav.addObject("msg1", "<script>alert('ìƒí’ˆë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+     mav.addObject("msg1", "<script>alert('»óÇ°µî·Ï¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
    } else {
-     mav.addObject("msg1", "<script>alert('ìƒí’ˆë“±ë¡ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+     mav.addObject("msg1", "<script>alert('»óÇ°µî·Ï¿¡ ¼º°øÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
    }
    
    return mav;
@@ -158,18 +152,18 @@ public ModelAndView Rental_resister() {
 
  
  
- // ìƒí’ˆìƒì„¸ë³´ê¸°
+ // »óÇ°»ó¼¼º¸±â
  @RequestMapping(value = "RentalRead.do", method = RequestMethod.GET)
  public ModelAndView Rental_Read(String product_no) {
    ModelAndView mav = new ModelAndView();
    mav.setViewName("category/RentalRead");   
    
-   // ì¢‹ì•„ìš”, ì‹«ì–´ìš” í¼ì„¼íŠ¸
-   double good = dao.Rental_good(product_no); // ì¢‹ì•„ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸°
-   double bad = dao.Rental_bad(product_no);   // ì‹«ì–´ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸°
+   // ÁÁ¾Æ¿ä, ½È¾î¿ä ÆÛ¼¾Æ®
+   double good = dao.Rental_good(product_no); // ÁÁ¾Æ¿ä ¼ö °¡Á®¿À±â
+   double bad = dao.Rental_bad(product_no);   // ½È¾î¿ä ¼ö °¡Á®¿À±â
    double sum = good + bad;           
-   good = good / sum * 100;                 // ì¢‹ì•„ìš” ìˆ˜ í¼ì„¼íŠ¸
-   good = Integer.parseInt(String.valueOf(Math.round(good))); // ì •ìˆ˜ë¡œ ë°”ê¾¸ê¸°
+   good = good / sum * 100;                 // ÁÁ¾Æ¿ä ¼ö ÆÛ¼¾Æ®
+   good = Integer.parseInt(String.valueOf(Math.round(good))); // Á¤¼ö·Î ¹Ù²Ù±â
    if(good != 0)
      bad = 100 - good;
    else
@@ -184,7 +178,7 @@ public ModelAndView Rental_resister() {
    return mav;
  }// CategoryList() end
  
- // ìƒí’ˆìˆ˜ì •
+ // »óÇ°¼öÁ¤
  @RequestMapping(value = "rental_update.do", method = RequestMethod.GET)
  public ModelAndView Rental_update(String product_no) {
    ModelAndView mav = new ModelAndView();
@@ -206,11 +200,11 @@ public ModelAndView Rental_resister() {
    String code = dao.category_code(ctCode);
    dto.setCategory_code(code);
 
-   // ì—…ë°ì´íŠ¸ 
+   // ¾÷µ¥ÀÌÆ® 
 //---------------------------------------------------------------------------
    String basePath = req.getRealPath("category/storage");
    
-   if(dto.getPosterMF().getSize() != 0) { // ì¸ë„¤ì¼ ìˆ˜ì •ì„ í•œë‹¤ë©´?
+   if(dto.getPosterMF().getSize() != 0) { // ½æ³×ÀÏ ¼öÁ¤À» ÇÑ´Ù¸é?
      MultipartFile PosterMF = dto.getPosterMF();
      String poster = UploadSaveManager.saveFileSpring30(PosterMF, basePath);
      dto.setThmb_name(poster);
@@ -218,7 +212,7 @@ public ModelAndView Rental_resister() {
    else {
      dto.setThmb_name(old_thmb_name);
    }
-   if(dto.getFilenameMF().getSize() != 0) { // ì´ë¯¸ì§€ ìˆ˜ì •ì„ í•œë‹¤ë©´?
+   if(dto.getFilenameMF().getSize() != 0) { // ÀÌ¹ÌÁö ¼öÁ¤À» ÇÑ´Ù¸é?
      MultipartFile filenameMF = dto.getFilenameMF();  
      String image = UploadSaveManager.saveFileSpring30(filenameMF, basePath);
      dto.setImage_name(image);
@@ -231,16 +225,16 @@ public ModelAndView Rental_resister() {
 
    int cnt = dao.update(dto, basePath, old_thmb_name, old_image_name);
    if(cnt!=1) {
-     mav.addObject("msg1", "<script>alert('ìƒí’ˆìˆ˜ì •ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+     mav.addObject("msg1", "<script>alert('»óÇ°¼öÁ¤¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
    } else {
-     mav.addObject("msg1", "<script>alert('ìƒí’ˆìˆ˜ì •ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+     mav.addObject("msg1", "<script>alert('»óÇ°¼öÁ¤¿¡ ¼º°øÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
    }
    
    return mav;
  }// CategoryList() end
  
  
-//ìƒí’ˆì‚­ì œ
+//»óÇ°»èÁ¦
 @RequestMapping(value = "rental_delete.do", method = RequestMethod.GET)
 public ModelAndView Rental_delete(String product_no) {
  ModelAndView mav = new ModelAndView();
@@ -254,51 +248,20 @@ public ModelAndView Rental_deleteProc(String product_no, HttpServletRequest req)
  ModelAndView mav = new ModelAndView();
  mav.setViewName("category/msgView");
  
- //ê¸°ì¡´íŒŒì¼ ì‚­ì œë¥¼ ìœ„í•œ ë£¨íŠ¸ê²½ë¡œ ê°€ì ¸ì˜¤ê¸°
+ //±âÁ¸ÆÄÀÏ »èÁ¦¸¦ À§ÇÑ ·çÆ®°æ·Î °¡Á®¿À±â
  String saveDirectory = req.getRealPath("category/storage");
  RentalDTO dto = dao.Read(product_no);
  String thum = dto.getThmb_name();
  String image = dto.getImage_name();
  int cnt = dao.delete(product_no, saveDirectory, thum, image);
  if(cnt!=1) {
-   mav.addObject("msg1", "<script>alert('ìƒí’ˆì‚­ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+   mav.addObject("msg1", "<script>alert('»óÇ°»èÁ¦¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
  } else {
-   mav.addObject("msg1", "<script>alert('ìƒí’ˆì‚­ì œì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
+   mav.addObject("msg1", "<script>alert('»óÇ°»èÁ¦¿¡ ¼º°øÇÏ¿´½À´Ï´Ù'); window.location.href = './Category.do?nowpage=1&col=&search=';</script>");
  }
  
  return mav;
 }// CategoryList() end
-
-
-//ì¢‹ì•„ìš”
-@RequestMapping(value="RGood.do",method=RequestMethod.GET)
-public ModelAndView Good(String postno, HttpSession session ) {
-  ModelAndView mav = new ModelAndView();
-  mav.setViewName("category/msgView");
-  
-  String id=(String) session.getAttribute("id");
-  String rid=dao.rental_id(postno);
-  dao.rgupdate(postno, id, rid);
-  
-  mav.addObject("msg1", "<script>window.location.href = './RentalRead.do?product_no=" + postno + "';</script>");
-  
-  return mav;
-}
-
-//ì‹«ì–´ìš”
-@RequestMapping(value="RBad.do",method=RequestMethod.GET)
-public ModelAndView Bad(String postno, HttpSession session ) {
-  ModelAndView mav = new ModelAndView();
-  mav.setViewName("category/msgView");
-  
-  String id=(String) session.getAttribute("id");
-  String rid=dao.rental_id(postno);
-  dao.rbupdate(postno, id, rid);
-  
-  mav.addObject("msg1", "<script>window.location.href = './RentalRead.do?product_no=" + postno + "';</script>");
-  
-  return mav;
-}
  
 
  

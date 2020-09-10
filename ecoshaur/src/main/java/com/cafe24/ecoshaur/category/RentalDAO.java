@@ -33,7 +33,7 @@ public class RentalDAO {
     ArrayList<CategoryDTO> category_list = null;
     public RentalDAO() { }
 
-  //ëª©ë¡
+  //¸ñ·Ï
     public ArrayList<RentalDTO> list(int nowpage, int recordPerPage) {
       try {
         RentalDTO dto = new RentalDTO();
@@ -69,14 +69,14 @@ public class RentalDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Categoryëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
-    //ëª©ë¡
+    //¸ñ·Ï
     public ArrayList<RentalDTO> list_search(int nowpage, int recordPerPage, String col, String search) {
       try {
         RentalDTO dto = new RentalDTO();
@@ -127,85 +127,85 @@ public class RentalDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Categoryëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
-    // ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+    // ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int count() {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt FROM rental_list ");
           sql.append(" WHERE availability='Y' ");
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("í–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("Çà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
       return count;
     } // count() end
     
- // ì„¸ë¶€ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+ // ¼¼ºÎ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int countDT(String category) {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt ");
           sql.append(" FROM rental_list A ");
           sql.append(" INNER JOIN rental_category B ");
           sql.append(" ON A.Category_code = B.code ");
-          if(category.equals("ì»´í“¨í„°"))
-            sql.append(" WHERE availability='Y' and B.major = 'ì»´í“¨í„°' ");
-          else if(category.equals("TV/ì˜ìƒê°€ì „"))
-            sql.append(" WHERE availability='Y' and B.major = 'TV/ì˜ìƒê°€ì „' ");
-          else if(category.equals("ìŒí–¥ê¸°ê¸°"))
-            sql.append(" WHERE availability='Y' and B.major = 'ìŒí–¥ê¸°ê¸°' ");
-          else if(category.equals("ì½˜ì†”/ê²Œì´ë°"))
-            sql.append(" WHERE availability='Y' and B.major = 'ì½˜ì†”/ê²Œì´ë°' ");
+          if(category.equals("ÄÄÇ»ÅÍ"))
+            sql.append(" WHERE availability='Y' and B.major = 'ÄÄÇ»ÅÍ' ");
+          else if(category.equals("TV/¿µ»ó°¡Àü"))
+            sql.append(" WHERE availability='Y' and B.major = 'TV/¿µ»ó°¡Àü' ");
+          else if(category.equals("À½Çâ±â±â"))
+            sql.append(" WHERE availability='Y' and B.major = 'À½Çâ±â±â' ");
+          else if(category.equals("ÄÜ¼Ö/°ÔÀÌ¹Ö"))
+            sql.append(" WHERE availability='Y' and B.major = 'ÄÜ¼Ö/°ÔÀÌ¹Ö' ");
           else
-            sql.append(" WHERE availability='Y' and B.major = 'ì¹´ë©”ë¼' ");
+            sql.append(" WHERE availability='Y' and B.major = 'Ä«¸Ş¶ó' ");
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("DTí–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("DTÇà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
       return count;
     } // count() end
     
- // ì„¸ë¶€ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+ // ¼¼ºÎ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int countDTC(String[] category, int size) {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt ");
           sql.append(" FROM rental_list A ");
@@ -218,20 +218,20 @@ public class RentalDAO {
           
           pstmt=con.prepareStatement(sql.toString());
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("DTí–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("DTÇà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
       return count;
     } // count() end
     
-  //ì„¸ë¶€ëª©ë¡
+  //¼¼ºÎ¸ñ·Ï
     public ArrayList<RentalDTO> listDT(String category, int nowpage, int recordPerPage) {
       try {
         RentalDTO dto = new RentalDTO();
@@ -244,16 +244,16 @@ public class RentalDAO {
         sql.append(" FROM rental_list A ");
         sql.append(" INNER JOIN rental_category B ");
         sql.append(" ON A.Category_code = B.code ");
-        if(category.equals("ì»´í“¨í„°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ì»´í“¨í„°' ");
-        else if(category.equals("TV/ì˜ìƒê°€ì „"))
-          sql.append(" WHERE availability='Y' and B.major = 'TV/ì˜ìƒê°€ì „' ");
-        else if(category.equals("ìŒí–¥ê¸°ê¸°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ìŒí–¥ê¸°ê¸°' ");
-        else if(category.equals("ì½˜ì†”/ê²Œì´ë°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ì½˜ì†”/ê²Œì´ë°' ");
+        if(category.equals("ÄÄÇ»ÅÍ"))
+          sql.append(" WHERE availability='Y' and B.major = 'ÄÄÇ»ÅÍ' ");
+        else if(category.equals("TV/¿µ»ó°¡Àü"))
+          sql.append(" WHERE availability='Y' and B.major = 'TV/¿µ»ó°¡Àü' ");
+        else if(category.equals("À½Çâ±â±â"))
+          sql.append(" WHERE availability='Y' and B.major = 'À½Çâ±â±â' ");
+        else if(category.equals("ÄÜ¼Ö/°ÔÀÌ¹Ö"))
+          sql.append(" WHERE availability='Y' and B.major = 'ÄÜ¼Ö/°ÔÀÌ¹Ö' ");
         else
-          sql.append(" WHERE availability='Y' and B.major = 'ì¹´ë©”ë¼' ");
+          sql.append(" WHERE availability='Y' and B.major = 'Ä«¸Ş¶ó' ");
         sql.append(" ORDER BY product_no DESC ");
         sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
         pstmt = con.prepareStatement(sql.toString());
@@ -279,7 +279,7 @@ public class RentalDAO {
         } // if end
 
       } catch (Exception e) {
-        System.out.println("Categoryì„¸ë¶€ëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¼¼ºÎ¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -287,7 +287,7 @@ public class RentalDAO {
     }
     
     
-  //ì„¸ë¶€ëª©ë¡ ê²€ìƒ‰
+  //¼¼ºÎ¸ñ·Ï °Ë»ö
     public ArrayList<RentalDTO> listDT_search(String category, int nowpage, int recordPerPage, String col, String search) {
       try {
         RentalDTO dto = new RentalDTO();
@@ -300,18 +300,18 @@ public class RentalDAO {
         sql.append(" FROM rental_list A ");
         sql.append(" INNER JOIN rental_category B ");
         sql.append(" ON A.Category_code = B.code ");
-        if(category.equals("ì»´í“¨í„°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ì»´í“¨í„°' ");
-        else if(category.equals("TV/ì˜ìƒê°€ì „"))
-          sql.append(" WHERE availability='Y' and B.major = 'TV/ì˜ìƒê°€ì „' ");
-        else if(category.equals("ìŒí–¥ê¸°ê¸°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ìŒí–¥ê¸°ê¸°' ");
-        else if(category.equals("ì½˜ì†”/ê²Œì´ë°"))
-          sql.append(" WHERE availability='Y' and B.major = 'ì½˜ì†”/ê²Œì´ë°' ");
+        if(category.equals("ÄÄÇ»ÅÍ"))
+          sql.append(" WHERE availability='Y' and B.major = 'ÄÄÇ»ÅÍ' ");
+        else if(category.equals("TV/¿µ»ó°¡Àü"))
+          sql.append(" WHERE availability='Y' and B.major = 'TV/¿µ»ó°¡Àü' ");
+        else if(category.equals("À½Çâ±â±â"))
+          sql.append(" WHERE availability='Y' and B.major = 'À½Çâ±â±â' ");
+        else if(category.equals("ÄÜ¼Ö/°ÔÀÌ¹Ö"))
+          sql.append(" WHERE availability='Y' and B.major = 'ÄÜ¼Ö/°ÔÀÌ¹Ö' ");
         else
-          sql.append(" WHERE availability='Y' and B.major = 'ì¹´ë©”ë¼' ");
+          sql.append(" WHERE availability='Y' and B.major = 'Ä«¸Ş¶ó' ");
         
-        // ê²€ìƒ‰ê¸°ëŠ¥
+        // °Ë»ö±â´É
         String data="";
         if(col.equals("subject")) {
           data += " AND (title LIKE '%" + search + "%' ";
@@ -350,7 +350,7 @@ public class RentalDAO {
         } // if end
 
       } catch (Exception e) {
-        System.out.println("Categoryì„¸ë¶€ëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¼¼ºÎ¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -359,7 +359,7 @@ public class RentalDAO {
     
     
     
-    //ì¹´í…Œê³ ë¦¬ ëª…(ëŒ€ë¶„ë¥˜ ê°€ì ¸ì˜¤ë©´ ì†Œë¶„ë¥˜ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°)
+    //Ä«Å×°í¸® ¸í(´ëºĞ·ù °¡Á®¿À¸é ¼ÒºĞ·ù¸®½ºÆ® °¡Á®¿À±â)
     public ArrayList<CategoryDTO> category(String category) {
       try {
         CategoryDTO dto = new CategoryDTO();
@@ -367,16 +367,16 @@ public class RentalDAO {
         sql = new StringBuilder();
         sql.append(" SELECT major, minor, code ");
         sql.append(" FROM rental_category ");
-        if(category.equals("ì»´í“¨í„°"))
-          sql.append(" WHERE major = 'ì»´í“¨í„°' ");
-        else if(category.equals("TV/ì˜ìƒê°€ì „"))
-          sql.append(" WHERE major = 'TV/ì˜ìƒê°€ì „' ");
-        else if(category.equals("ìŒí–¥ê¸°ê¸°"))
-          sql.append(" WHERE major = 'ìŒí–¥ê¸°ê¸°' ");
-        else if(category.equals("ì½˜ì†”/ê²Œì´ë°"))
-          sql.append(" WHERE major = 'ì½˜ì†”/ê²Œì´ë°' ");
+        if(category.equals("ÄÄÇ»ÅÍ"))
+          sql.append(" WHERE major = 'ÄÄÇ»ÅÍ' ");
+        else if(category.equals("TV/¿µ»ó°¡Àü"))
+          sql.append(" WHERE major = 'TV/¿µ»ó°¡Àü' ");
+        else if(category.equals("À½Çâ±â±â"))
+          sql.append(" WHERE major = 'À½Çâ±â±â' ");
+        else if(category.equals("ÄÜ¼Ö/°ÔÀÌ¹Ö"))
+          sql.append(" WHERE major = 'ÄÜ¼Ö/°ÔÀÌ¹Ö' ");
         else
-          sql.append(" WHERE major = 'ì¹´ë©”ë¼' ");
+          sql.append(" WHERE major = 'Ä«¸Ş¶ó' ");
         sql.append(" ORDER BY major ");
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
@@ -394,7 +394,7 @@ public class RentalDAO {
         } // if end
 
       } catch (Exception e) {
-        System.out.println("Categoryì„¸ë¶€ëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¼¼ºÎ¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -406,7 +406,7 @@ public class RentalDAO {
     
     
     
-    //ì„ íƒì¹´í…Œê³ ë¦¬ ê°€ì ¸ì˜¤ê¸°(ëŒ€ë¶„ë¥˜ ê°€ì ¸ì˜¤ë©´ í•´ë‹¹í•˜ëŠ” ìƒí’ˆë“¤ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°)
+    //¼±ÅÃÄ«Å×°í¸® °¡Á®¿À±â(´ëºĞ·ù °¡Á®¿À¸é ÇØ´çÇÏ´Â »óÇ°µé ¸®½ºÆ® °¡Á®¿À±â)
     public ArrayList<RentalDTO> select_listDT(String[] category, int size,  int nowpage, int recordPerPage) {
       int startRow = ((nowpage-1) * recordPerPage) ;
       int endRow   = recordPerPage;
@@ -449,7 +449,7 @@ public class RentalDAO {
         } // if end
 
       } catch (Exception e) {
-        System.out.println("Categoryì„¸ë¶€ëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¼¼ºÎ¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -457,7 +457,7 @@ public class RentalDAO {
     }
    
     
-    // ì†Œë¶„ë¥˜ ê°€ì ¸ì˜¤ê¸°(ë¦¬ìŠ¤íŠ¸ê°€ì ¸ì˜¤ê¸°)
+    // ¼ÒºĞ·ù °¡Á®¿À±â(¸®½ºÆ®°¡Á®¿À±â)
     public ArrayList<CategoryDTO> MNcategory() {
       try {
         CategoryDTO dto = new CategoryDTO();
@@ -479,7 +479,7 @@ public class RentalDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Categoryì„¸ë¶€ëª©ë¡ ì‹¤íŒ¨:" + e);
+        System.out.println("Category¼¼ºÎ¸ñ·Ï ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -487,7 +487,7 @@ public class RentalDAO {
     }
 
     
- // ì¹´í…Œê³ ë¦¬ ì†Œë¶„ë¥˜ë¡œ ì½”ë“œ ê°€ì ¸ì˜¤ê¸°
+ // Ä«Å×°í¸® ¼ÒºĞ·ù·Î ÄÚµå °¡Á®¿À±â
     public String category_code(String minor) {
       String code = null;
       try {
@@ -503,14 +503,14 @@ public class RentalDAO {
           code = rs.getString("code");
         }
       } catch (Exception e) {
-        System.out.println("ì½”ë“œê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("ÄÚµå°¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return code;
     } 
     
-    // ì¹´í…Œê³ ë¦¬ ì½”ë“œ ê°€ì ¸ì˜¤ê¸°
+    // Ä«Å×°í¸® ÄÚµå °¡Á®¿À±â
     public String rental_code(String product_no) {
       String code = null;
       try {
@@ -526,14 +526,14 @@ public class RentalDAO {
           code = rs.getString("category_code");
         }
       } catch (Exception e) {
-        System.out.println("ì¹´í…Œê³ ë¦¬ ì½”ë“œê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("Ä«Å×°í¸® ÄÚµå°¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return code;
     } 
     
-    // ì¹´í…Œê³ ë¦¬ ì½”ë“œë¡œ ì†Œë¶„ë¥˜ ê°€ì ¸ì˜¤ê¸°
+    // Ä«Å×°í¸® ÄÚµå·Î ¼ÒºĞ·ù °¡Á®¿À±â
     public String category_minor(String code) {
       String minor = null;
       try {
@@ -549,14 +549,14 @@ public class RentalDAO {
           minor = rs.getString("minor");
         }
       } catch (Exception e) {
-        System.out.println("ì†Œë¶„ë¥˜ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("¼ÒºĞ·ù°¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return minor;
     } 
     
-    //í•´ë‹¹ ì†Œë¶„ë¥˜ì˜ ì½”ë“œë²ˆí˜¸ maxê°€ì ¸ì˜¤ê¸°
+    //ÇØ´ç ¼ÒºĞ·ùÀÇ ÄÚµå¹øÈ£ max°¡Á®¿À±â
     public String Max_code(String code) {
       String num = null;
       try {
@@ -576,7 +576,7 @@ public class RentalDAO {
           num="000-00-000000";
         }
       } catch (Exception e) {
-        System.out.println("maxì½”ë“œê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("maxÄÚµå°¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -584,7 +584,7 @@ public class RentalDAO {
     } 
     
     
-    // ìƒí’ˆë“±ë¡
+    // »óÇ°µî·Ï
     public int create(RentalDTO dto) {
       int cnt = 0;
       try {
@@ -609,7 +609,7 @@ public class RentalDAO {
         pstmt.setString(13, dto.getCategory_code());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆë“±ë¡ì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ°µî·Ï½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -618,7 +618,7 @@ public class RentalDAO {
 
     
     
- // ìƒí’ˆìƒì„¸ë³´ê¸°ì—ì„œ ì¢‹ì•„ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸°
+ // »óÇ°»ó¼¼º¸±â¿¡¼­ ÁÁ¾Æ¿ä ¼ö °¡Á®¿À±â
     public int Rental_good(String no) {
       int count = 0;
       try {
@@ -634,14 +634,14 @@ public class RentalDAO {
           count = rs.getInt("count");
         }
       } catch (Exception e) {
-        System.out.println("ì¢‹ì•„ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("ÁÁ¾Æ¿ä ¼ö °¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return count;
     } 
     
-    // ìƒí’ˆìƒì„¸ë³´ê¸°ì—ì„œ ì‹«ì–´ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸°
+    // »óÇ°»ó¼¼º¸±â¿¡¼­ ½È¾î¿ä ¼ö °¡Á®¿À±â
     public int Rental_bad(String no) {
       int count = 0;
       try {
@@ -657,7 +657,7 @@ public class RentalDAO {
           count = rs.getInt("count");
         }
       } catch (Exception e) {
-        System.out.println("ì‹«ì–´ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("½È¾î¿ä ¼ö °¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -665,7 +665,7 @@ public class RentalDAO {
     } 
     
     
-    //ìƒì„¸ë³´ê¸°
+    //»ó¼¼º¸±â
     public RentalDTO Read(String product_no) {
       RentalDTO dto = new RentalDTO();
       try {
@@ -693,14 +693,14 @@ public class RentalDAO {
           dto.setId(rs.getString("id"));
         }
       } catch (Exception e) {
-        System.out.println("ìƒì„¸ë³´ê¸° ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("»ó¼¼º¸±â °¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return dto;
     } 
     
-  //ìˆ˜ì •
+  //¼öÁ¤
     public int update(RentalDTO dto, String saveDirectory, String old_thmb_name, String old_image_name) {
       int cnt = 0;
       try {
@@ -730,14 +730,14 @@ public class RentalDAO {
           Utility.deleteFile(saveDirectory, old_image_name);
         }
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆ ìˆ˜ì •ì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ° ¼öÁ¤½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }// update() end
 
-    //ì‚­ì œ
+    //»èÁ¦
     public int delete(String product_no, String saveDirectory, String thum, String image) {
       int cnt = 0;
       try {
@@ -753,7 +753,7 @@ public class RentalDAO {
           Utility.deleteFile(saveDirectory, image);
         }
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆì‚­ì œì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ°»èÁ¦½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -761,89 +761,7 @@ public class RentalDAO {
     }// delete() end
     
     
-    //ì¢‹ì•„ìš” ì¦ê°€
-    public int rgupdate(String postno, String id, String rid){
-      int cnt = 0; 
-      try {
-        con = dbopen.getConnection();
-        sql = new StringBuilder();
-        sql.append(" INSERT INTO rating(no, id_give, id_receive, evaluation, rated_date) ");
-        sql.append(" VALUES(?, ?, ?, 'Good', now()) ");
-        pstmt = con.prepareStatement(sql.toString());
-        pstmt.setString(1, postno);        
-        pstmt.setString(2, id);     
-        pstmt.setString(3, rid);     
-        cnt = pstmt.executeUpdate();
-
-      } catch (Exception e) {
-        System.out.println("ì¢‹ì•„ìš” ì‹¤íŒ¨"+e);
-      } finally {
-          dbclose.close(con, pstmt, rs);
-      }//end
-      return cnt;
-    }//gupdate() end 
     
-    //ì‹«ì–´ìš” ì¦ê°€
-    public int rbupdate(String postno, String id, String rid){
-      int cnt = 0; 
-      try {
-        con = dbopen.getConnection();
-        sql = new StringBuilder();
-        sql.append(" INSERT INTO rating(no, id_give, id_receive, evaluation, rated_date) ");
-        sql.append(" VALUES(?, ?, ?, 'Bad', now()) ");
-        pstmt = con.prepareStatement(sql.toString());
-        pstmt.setString(1, postno);        
-        pstmt.setString(2, id);     
-        pstmt.setString(3, rid);     
-        cnt = pstmt.executeUpdate();
-
-      } catch (Exception e) {
-        System.out.println("ì‹«ì–´ìš” ì‹¤íŒ¨"+e);
-      } finally {
-          dbclose.close(con, pstmt, rs);
-      }//end
-      return cnt;
-    }//bupdate() end 
     
- // ìƒí’ˆ ì‘ì„±ì ì•„ì´ë”” ê°€ì ¸ì˜¤ê¸°
-    public String rental_id(String no) {
-      String rid="";
-      try {
-        con = dbopen.getConnection();
-        sql = new StringBuilder();
-        sql.append(" SELECT id ");
-        sql.append(" FROM rental_list ");
-        sql.append(" WHERE product_no = ? ");
-        pstmt = con.prepareStatement(sql.toString());
-        pstmt.setString(1, no);
-        rs = pstmt.executeQuery();
-        if (rs.next()) {
-          rid = rs.getString("id");
-        }
-      } catch (Exception e) {
-        System.out.println("ì‘ì„±ì ì•„ì´ë”” ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
-      } finally {
-        DBClose.close(con, pstmt, rs);
-      }
-      return rid;
-    } 
     
-    // ìƒí’ˆ ê°¯ìˆ˜ 0ê°œì¼ë•Œ ìƒíƒœìˆ˜ì •
-    public int update_quantity() {
-      int cnt = 0;
-      try {
-        con = dbopen.getConnection();
-        sql = new StringBuilder();
-        sql.append(" UPDATE rental_list ");
-        sql.append(" set availability='N' ");
-        sql.append(" WHERE remaining_quantity=0 ");
-        pstmt = con.prepareStatement(sql.toString());
-        cnt = pstmt.executeUpdate();
-      } catch (Exception e) {
-        System.out.println("ìƒí’ˆ ìƒíƒœ ìˆ˜ì •ì‹¤íŒ¨ : " + e);
-      } finally {
-        dbclose.close(con, pstmt);
-      }
-      return cnt;
-    }// update() end
 }

@@ -45,14 +45,14 @@ public class AdminDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("珥앷툑�븸媛��졇�삤湲� �떎�뙣"+e);
+          System.out.println("총금액가져오기 실패"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return price;
     }//read() end
     
-    // �떊洹쒗쉶�썝 �닔 
+    // 신규회원 수 
     public int new_user() {
       int cnt=0;
       try {
@@ -68,14 +68,14 @@ public class AdminDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("�떊洹쒗쉶�썝 �닔 媛��졇�삤湲� �떎�뙣"+e);
+          System.out.println("신규회원 수 가져오기 실패"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//read() end
     
-    // �삤�뒛 諛⑸Ц�옄
+    // 오늘 방문자
     public int visitor() {
       int cnt=0;
       try {
@@ -91,14 +91,14 @@ public class AdminDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("諛⑸Ц�옄 �닔 媛��졇�삤湲� �떎�뙣"+e);
+          System.out.println("방문자 수 가져오기 실패"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return cnt;
     }//read() end
     
-    // 珥� 二쇰Ц�닔
+    // 총 주문수
     public int total_order() {
       int cnt=0;
       try {
@@ -113,7 +113,7 @@ public class AdminDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("珥� 二쇰Ц �닔 媛��졇�삤湲� �떎�뙣"+e);
+          System.out.println("총 주문 수 가져오기 실패"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
@@ -121,7 +121,7 @@ public class AdminDAO {
     }//read() end
     
     
-  //�긽�뭹 紐⑸줉 媛��졇�삤湲�
+  //상품 목록 가져오기
     public ArrayList<RentalDTO> Rental_list() {
       RentalDTO dto = new RentalDTO();
       ArrayList<RentalDTO> list = new ArrayList<RentalDTO>();
@@ -155,14 +155,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Category紐⑸줉 �떎�뙣:" + e);
+        System.out.println("Category목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
- // 二쇰Ц�궡�뿭�꽌 紐⑸줉
+ // 주문내역서 목록
     public ArrayList<OrderHistoryDTO> orderhistory_list() {
       OrderHistoryDTO dto = new OrderHistoryDTO();
       ArrayList<OrderHistoryDTO> list = null;
@@ -196,14 +196,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Category紐⑸줉 �떎�뙣:" + e);
+        System.out.println("Category목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
-  //理쒓렐 二쇰Ц紐⑸줉 id 由ъ뒪�듃 媛��졇�삤湲�
+  //최근 주문목록 id 리스트 가져오기
     public ArrayList<OrderDTO> ID_list() {
       OrderDTO dto = new OrderDTO();
       ArrayList<OrderDTO> list = null;
@@ -229,7 +229,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("理쒓렐二쇰Ц紐⑸줉 id紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("최근주문목록 id목록 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -237,9 +237,9 @@ public class AdminDAO {
     }
     
 //---------------------------------------------------------------------------------------
-//     理쒓렐 二쇰Ц紐⑸줉
+//     최근 주문목록
 //----------------------------------------------------------------------------------------
-  //�긽�뭹 紐⑸줉 媛��졇�삤湲�
+  //상품 목록 가져오기
     public ArrayList<RentalDTO> Rental_list_t() {
       RentalDTO dto = new RentalDTO();
       ArrayList<RentalDTO> list = new ArrayList<RentalDTO>();
@@ -272,14 +272,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Category紐⑸줉 �떎�뙣:" + e);
+        System.out.println("Category목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
- // 二쇰Ц�궡�뿭�꽌 紐⑸줉
+ // 주문내역서 목록
     public ArrayList<OrderHistoryDTO> orderhistory_list_t() {
       OrderHistoryDTO dto = new OrderHistoryDTO();
       ArrayList<OrderHistoryDTO> list = null;
@@ -312,14 +312,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("Category紐⑸줉 �떎�뙣:" + e);
+        System.out.println("Category목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
-  //理쒓렐 二쇰Ц紐⑸줉 id 由ъ뒪�듃 媛��졇�삤湲�
+  //최근 주문목록 id 리스트 가져오기
     public ArrayList<OrderDTO> ID_list_t() {
       OrderDTO dto = new OrderDTO();
       ArrayList<OrderDTO> list = null;
@@ -344,7 +344,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("理쒓렐二쇰Ц紐⑸줉 id紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("최근주문목록 id목록 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -353,7 +353,7 @@ public class AdminDAO {
 //---------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
     
-    // top �쑀���룷�씤�듃
+    // top 유저포인트
     public ArrayList<PointDTO> top_point() {
       PointDTO dto = new PointDTO();
       ArrayList<PointDTO> list = null;
@@ -379,7 +379,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�룷�씤�듃 �닚�쐞 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("포인트 순위 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -387,7 +387,7 @@ public class AdminDAO {
     }//read() end
     
     
- // top �솚遺덉씠 留롮� �긽�뭹�쓽 ���뿬�옄 �닚�쐞(rental)
+ // top 환불이 많은 상품의 대여자 순위(rental)
     public ArrayList<RentalDTO> topFail_rental() {
       RentalDTO dto = new RentalDTO();
       ArrayList<RentalDTO> list = null;
@@ -415,7 +415,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�솚遺덉닚�쐞 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("환불순위 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -424,7 +424,7 @@ public class AdminDAO {
     
     
     
- // top �솚遺덉씠 留롮� �긽�뭹�쓽 ���뿬�옄 �닚�쐞(count)
+ // top 환불이 많은 상품의 대여자 순위(count)
     public ArrayList<OrderHistoryDTO> topFail_condition() {
       OrderHistoryDTO dto = new OrderHistoryDTO();
       ArrayList<OrderHistoryDTO> list = null;
@@ -451,7 +451,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�솚遺� �닚�쐞 媛��졇�삤湲�(媛��닔) �떎�뙣:" + e);
+        System.out.println("환불 순위 가져오기(갯수) 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -461,7 +461,7 @@ public class AdminDAO {
   //---------------------------------------------------------------------------------------
   //----------------------------------------------------------------------------------------
       
-      // top �쑀���룷�씤�듃
+      // top 유저포인트
       public ArrayList<PointDTO> top_point_t() {
         PointDTO dto = new PointDTO();
         ArrayList<PointDTO> list = null;
@@ -487,7 +487,7 @@ public class AdminDAO {
             list = null;
           } // if end
         } catch (Exception e) {
-          System.out.println("�룷�씤�듃 �닚�쐞 媛��졇�삤湲� �떎�뙣:" + e);
+          System.out.println("포인트 순위 가져오기 실패:" + e);
         } finally {
           DBClose.close(con, pstmt, rs);
         }
@@ -495,7 +495,7 @@ public class AdminDAO {
       }//read() end
       
       
-   // top �솚遺덉씠 留롮� �긽�뭹�쓽 ���뿬�옄 �닚�쐞(rental)
+   // top 환불이 많은 상품의 대여자 순위(rental)
       public ArrayList<RentalDTO> topFail_rental_t() {
         RentalDTO dto = new RentalDTO();
         ArrayList<RentalDTO> list = null;
@@ -522,7 +522,7 @@ public class AdminDAO {
             list = null;
           } // if end
         } catch (Exception e) {
-          System.out.println("�솚遺덉닚�쐞 媛��졇�삤湲� �떎�뙣:" + e);
+          System.out.println("환불순위 가져오기 실패:" + e);
         } finally {
           DBClose.close(con, pstmt, rs);
         }
@@ -531,7 +531,7 @@ public class AdminDAO {
       
       
       
-   // top �솚遺덉씠 留롮� �긽�뭹�쓽 ���뿬�옄 �닚�쐞(count)
+   // top 환불이 많은 상품의 대여자 순위(count)
       public ArrayList<OrderHistoryDTO> topFail_condition_t() {
         OrderHistoryDTO dto = new OrderHistoryDTO();
         ArrayList<OrderHistoryDTO> list = null;
@@ -557,18 +557,18 @@ public class AdminDAO {
             list = null;
           } // if end
         } catch (Exception e) {
-          System.out.println("�솚遺� �닚�쐞 媛��졇�삤湲�(媛��닔) �떎�뙣:" + e);
+          System.out.println("환불 순위 가져오기(갯수) 실패:" + e);
         } finally {
           DBClose.close(con, pstmt, rs);
         }
         return list;
       }//read() end
 //------------------------------------------------------------------------------------------------
-  //�꽭遺�紐⑸줉
+  //세부목록
     public String[][] Category_info() {
       String[][] list = new String[5][8];
       try {   
-        // 移댄뀒怨좊━紐�, �긽�뭹寃뚯떆湲� 媛��닔, �룊洹� �긽�뭹湲덉븸, 珥� �긽�뭹湲덉븸, �룊洹� 蹂댁쬆湲�, 珥� 蹂댁쬆湲�
+        // 카테고리명, 상품게시글 갯수, 평균 상품금액, 총 상품금액, 평균 보증금, 총 보증금
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" select major, count(product_no) as cnt_no, cast(ifnull(avg(price_daily),0) AS signed integer) as avg_price, "
@@ -596,7 +596,7 @@ public class AdminDAO {
           list = null;
         } // if end
         
-        // 移댄뀒怨좊━蹂� �룊洹� 嫄곕옒湲덉븸, 珥� 嫄곕옒湲덉븸
+        // 카테고리별 평균 거래금액, 총 거래금액
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" select cast(ifnull(avg(total_price),0) AS signed integer) as avg_order, cast(ifnull(sum(total_price),0) AS signed integer) as sum_order ");
@@ -621,7 +621,7 @@ public class AdminDAO {
           list = null;
         } // if end
       }catch (Exception e) {
-        System.out.println("移댄뀒怨좊━蹂� �슂�빟紐⑸줉媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("카테고리별 요약목록가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -629,7 +629,7 @@ public class AdminDAO {
     }//read() end
     
     
- // �쉶�썝紐⑸줉 由ъ뒪�듃
+ // 회원목록 리스트
     public ArrayList<MemberDTO> member_list() {
       MemberDTO dto = new MemberDTO();
       ArrayList<MemberDTO> list = null;
@@ -664,14 +664,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�쉶�썝紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("회원목록 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }//read() end
     
-  //�쉶�썝�젙蹂� �닔�젙
+  //회원정보 수정
     public int member_update(MemberDTO dto){
         int cnt = 0;
         try{
@@ -696,7 +696,7 @@ public class AdminDAO {
           pstmt.setString(13, dto.getId());
           cnt = pstmt.executeUpdate();
         }catch(Exception e){
-          System.out.println("�쉶�썝�젙蹂� �닔�젙 �떎�뙣: "+e);
+          System.out.println("회원정보 수정 실패: "+e);
         }finally{
           DBClose.close(con, pstmt);
         }
@@ -704,7 +704,7 @@ public class AdminDAO {
       }//update() end
     
     
-  //�쉶�썝�젙蹂� 遺덈윭�삤湲�
+  //회원정보 불러오기
     public MemberDTO member_read(String id) {
           MemberDTO dto = new MemberDTO();
           try {
@@ -732,7 +732,7 @@ public class AdminDAO {
               dto.setGrade(rs.getString("grade"));
             }
           } catch (Exception e) {
-            System.out.println("�쉶�썝�젙蹂� 媛��졇�삤湲� �떎�뙣:" + e);
+            System.out.println("회원정보 가져오기 실패:" + e);
           } finally {
             DBClose.close(con, pstmt, rs);
           }
@@ -740,7 +740,7 @@ public class AdminDAO {
         }// read()
     
     
-  //�쉶�썝�젙蹂� �닔�젙
+  //회원정보 수정
     public int update(MemberDTO dto){
         int cnt = 0;
         String id = dto.getId();
@@ -767,14 +767,14 @@ public class AdminDAO {
           pstmt.setString(14, id);
           cnt = pstmt.executeUpdate();
         }catch(Exception e){
-          System.out.println("�쉶�썝�젙蹂� �닔�젙 �떎�뙣: "+e);
+          System.out.println("회원정보 수정 실패: "+e);
         }finally{
           DBClose.close(con, pstmt);
         }
         return cnt;
       }//update() end
     
- // top �쑀���룷�씤�듃
+ // top 유저포인트
     public ArrayList<PointDTO> point() {
       PointDTO dto = new PointDTO();
       ArrayList<PointDTO> list = null;
@@ -799,7 +799,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�룷�씤�듃 �닚�쐞 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("포인트 순위 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -807,28 +807,27 @@ public class AdminDAO {
     }//read() end
     
     
- // �룷�씤�듃 利앷컧
+ // 포인트 증감
     public int point_insert(PointDTO dto) {
       int cnt = 0;
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" UPDATE point ");
-        sql.append(" SET point = ? ");
-        sql.append(" WHERE id = ? ");
+        sql.append(" INSERT INTO point(NO, ID, POINT, DATE) ");
+        sql.append(" VALUES((SELECT Ifnull(Max(no), 0) FROM point AS TB), ?, ?, NOW()) ");
         pstmt = con.prepareStatement(sql.toString());
-        pstmt.setInt(1, dto.getPoint());
-        pstmt.setString(2, dto.getId());
+        pstmt.setString(1, dto.getId());
+        pstmt.setInt(2, dto.getPoint());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("포인트 변경 : " + e);
+        System.out.println("포인트 증감실패 : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }
     
- // 醫뗭븘�슂/�떕�뼱�슂 由ъ뒪�듃
+ // 좋아요/싫어요 리스트
     public ArrayList<RatingDTO> rating() {
       RatingDTO dto = new RatingDTO();
       ArrayList<RatingDTO> list = null;
@@ -855,7 +854,7 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("醫뗭븘�슂/�떕�뼱�슂 由ъ뒪�듃 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("좋아요/싫어요 리스트 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -863,7 +862,7 @@ public class AdminDAO {
     }//read() end
     
     
-  //�긽�뭹紐⑸줉 由ъ뒪�듃
+  //상품목록 리스트
     public ArrayList<RentalDTO> rental_list() {
       ArrayList<RentalDTO> list = null;
       RentalDTO dto = new RentalDTO();
@@ -897,14 +896,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("�긽�뭹紐⑸줉 �떎�뙣:" + e);
+        System.out.println("상품목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }
     
-    // �긽�뭹肄붾뱶濡� ���뿬�옄 媛��졇�삤湲�
+    // 상품코드로 대여자 가져오기
     public String rental_writer(String product_no) {
       String id="";
       try {
@@ -921,7 +920,7 @@ public class AdminDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("�긽�뭹肄붾뱶濡� ���뿬�옄�븘�씠�뵒 媛��졇�삤湲� �떎�뙣"+e);
+          System.out.println("상품코드로 대여자아이디 가져오기 실패"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
@@ -929,7 +928,7 @@ public class AdminDAO {
     }//read() end
     
     
-    // 醫뗭븘�슂/�떕�뼱�슂 �엯�젰
+    // 좋아요/싫어요 입력
     public int rating_insert(RatingDTO dto) {
       int cnt = 0;
       try {
@@ -944,7 +943,7 @@ public class AdminDAO {
         pstmt.setString(4, dto.getEvaluation());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("醫뗭븘�슂/�떕�뼱�슂 �엯�젰�떎�뙣 : " + e);
+        System.out.println("좋아요/싫어요 입력실패 : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -952,7 +951,7 @@ public class AdminDAO {
     }
     
     
-  //�긽�뭹 媛��졇�삤湲�
+  //상품 가져오기
     public RentalDTO rental_read(String product_no) {
       RentalDTO dto = new RentalDTO();
       try {
@@ -982,14 +981,14 @@ public class AdminDAO {
           dto.setId(rs.getString("id"));
         }
       } catch (Exception e) {
-        System.out.println("�긽�뭹�젙蹂� 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("상품정보 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return dto;
     } 
     
-    //�긽�뭹�닔�젙
+    //상품수정
     public int rental_update(RentalDTO dto, String saveDirectory) {
       int cnt = 0;
       try {
@@ -1023,7 +1022,7 @@ public class AdminDAO {
           Utility.deleteFile(saveDirectory, dto.getImage_name());
         }
       } catch (Exception e) {
-        System.out.println("�긽�뭹 �닔�젙�떎�뙣 : " + e);
+        System.out.println("상품 수정실패 : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -1031,7 +1030,7 @@ public class AdminDAO {
     }// update() end
     
     
-  //�빐�떦 �냼遺꾨쪟�쓽 肄붾뱶踰덊샇 max媛��졇�삤湲�
+  //해당 소분류의 코드번호 max가져오기
     public String Max_code(String code) {
       String num = null;
       try {
@@ -1051,14 +1050,14 @@ public class AdminDAO {
           num="000-00-000000";
         }
       } catch (Exception e) {
-        System.out.println("max肄붾뱶媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("max코드가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return num;
     } 
     
-    // 移댄뀒怨좊━ 肄붾뱶 媛��졇�삤湲�
+    // 카테고리 코드 가져오기
     public String rental_code(String product_no) {
       String code = null;
       try {
@@ -1074,7 +1073,7 @@ public class AdminDAO {
           code = rs.getString("category_code");
         }
       } catch (Exception e) {
-        System.out.println("移댄뀒怨좊━ 肄붾뱶媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("카테고리 코드가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -1082,7 +1081,7 @@ public class AdminDAO {
     } 
     
     
- // 移댄뀒怨좊━ 肄붾뱶濡� �냼遺꾨쪟 媛��졇�삤湲�
+ // 카테고리 코드로 소분류 가져오기
     public String category_minor(String code) {
       String minor = null;
       try {
@@ -1098,14 +1097,14 @@ public class AdminDAO {
           minor = rs.getString("minor");
         }
       } catch (Exception e) {
-        System.out.println("�냼遺꾨쪟媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("소분류가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return minor;
     } 
     
- // �냼遺꾨쪟 媛��졇�삤湲�(由ъ뒪�듃媛��졇�삤湲�)
+ // 소분류 가져오기(리스트가져오기)
     public ArrayList<CategoryDTO> MNcategory() {
       ArrayList<CategoryDTO> category_list = null;
       CategoryDTO dto = new CategoryDTO();
@@ -1129,7 +1128,7 @@ public class AdminDAO {
         } // if end
 
       } catch (Exception e) {
-        System.out.println("Category�꽭遺�紐⑸줉 �떎�뙣:" + e);
+        System.out.println("Category세부목록 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -1137,7 +1136,7 @@ public class AdminDAO {
     }
     
     
- // 移댄뀒怨좊━ �냼遺꾨쪟濡� 肄붾뱶 媛��졇�삤湲�
+ // 카테고리 소분류로 코드 가져오기
     public String category_code(String minor) {
       String code = null;
       try {
@@ -1153,7 +1152,7 @@ public class AdminDAO {
           code = rs.getString("code");
         }
       } catch (Exception e) {
-        System.out.println("肄붾뱶媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("코드가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
@@ -1161,7 +1160,7 @@ public class AdminDAO {
     } 
     
     
-    // 二쇰Ц�꽌紐⑸줉 由ъ뒪�듃
+    // 주문서목록 리스트
     public ArrayList<OrderDTO> Order_list() {
       OrderDTO dto = new OrderDTO();
       ArrayList<OrderDTO> list = null;
@@ -1191,14 +1190,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("二쇰Ц�꽌 紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("주문서 목록 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }//list() end    
     
-    // 二쇰Ц�꽌 紐⑸줉 �씫�뼱�삤湲� 
+    // 주문서 목록 읽어오기 
     public OrderDTO order_read(String order_no) {
       OrderDTO dto = new OrderDTO();
           try {
@@ -1221,14 +1220,14 @@ public class AdminDAO {
               dto.setTel(rs.getString("tel"));
             }
           } catch (Exception e) {
-            System.out.println("二쇰Ц�꽌 紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+            System.out.println("주문서 목록 가져오기 실패:" + e);
           } finally {
             DBClose.close(con, pstmt, rs);
           }
           return dto;
         }// read()
     
-    //二쇰Ц�꽌 紐⑸줉 �닔�젙
+    //주문서 목록 수정
     public int order_update(OrderDTO dto){
         int cnt = 0;
         try{
@@ -1248,7 +1247,7 @@ public class AdminDAO {
           pstmt.setInt(8, dto.getOrder_no());
           cnt = pstmt.executeUpdate();
         }catch(Exception e){
-          System.out.println("二쇰Ц�꽌 紐⑸줉 �닔�젙 �떎�뙣: "+e);
+          System.out.println("주문서 목록 수정 실패: "+e);
         }finally{
           DBClose.close(con, pstmt);
         }
@@ -1256,7 +1255,7 @@ public class AdminDAO {
       }//update() end
     
     
-    // 二쇰Ц�궡�뿭�꽌 由ъ뒪�듃
+    // 주문내역서 리스트
     public ArrayList<OrderHistoryDTO> Orderh_list() {
       OrderHistoryDTO dto = new OrderHistoryDTO();
       ArrayList<OrderHistoryDTO> list = null;
@@ -1290,14 +1289,14 @@ public class AdminDAO {
           list = null;
         } // if end
       } catch (Exception e) {
-        System.out.println("二쇰Ц�궡�뿭�꽌 紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+        System.out.println("주문내역서 목록 가져오기 실패:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return list;
     }//list() end 
     
-    // 二쇰Ц�궡�뿭�꽌 紐⑸줉 �씫�뼱�삤湲� 
+    // 주문내역서 목록 읽어오기 
     public OrderHistoryDTO orderh_read(String order_detail_no) {
       OrderHistoryDTO dto = new OrderHistoryDTO();
           try {
@@ -1325,14 +1324,14 @@ public class AdminDAO {
               dto.setDeposit(rs.getInt("deposit"));            
             }
           } catch (Exception e) {
-            System.out.println("二쇰Ц�꽌 紐⑸줉 媛��졇�삤湲� �떎�뙣:" + e);
+            System.out.println("주문서 목록 가져오기 실패:" + e);
           } finally {
             DBClose.close(con, pstmt, rs);
           }
           return dto;
         }// read()
     
-    //二쇰Ц�궡�뿭�꽌 紐⑸줉 �닔�젙
+    //주문내역서 목록 수정
     public int orderh_update(OrderHistoryDTO dto){
         int cnt = 0;
         try{
@@ -1358,7 +1357,7 @@ public class AdminDAO {
           
           cnt = pstmt.executeUpdate();
         }catch(Exception e){
-          System.out.println("二쇰Ц�꽌 紐⑸줉 �닔�젙 �떎�뙣: "+e);
+          System.out.println("주문서 목록 수정 실패: "+e);
         }finally{
           DBClose.close(con, pstmt);
         }

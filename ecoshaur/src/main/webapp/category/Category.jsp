@@ -5,8 +5,6 @@
 <link href="assets/libs/css/category.css" rel="stylesheet" type="text/css">
 
 
-<!-- 깃 테스트 -->
-
 <!-- 본문 시작 Category.jsp-->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -24,10 +22,7 @@
     </div>
 </div>
 
-
-
 <div class="container">
-
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 		<div style="text-align:center;">
@@ -50,7 +45,6 @@
 	</nav>
         <div class="row">
         <c:forEach var="dto" items="${list}">
-        
             <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div class="card">
                     <img class="card-img-top" src="category/storage/${dto.thmb_name}">
@@ -70,12 +64,9 @@
                     </div>
                 </div>
             </div>
-            	
-            
+
         </c:forEach>
-        </div>
-       
-        
+        </div>        
 </div>
 <br><br><br>
 
@@ -99,6 +90,7 @@
 		    Next</a></li>
 		  </ul>
 		</nav>
+		
 	<!-- 검색기능 -->
 	<div style="text-align:center;">
 		<form method="get" action="Category.do">
@@ -120,11 +112,10 @@
 			<input type="submit" class="btn btn-primary" value="Search">
 		</form>
 	</div>
-
+</div>
+</div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</div>
-</div>
 <!-- 본문 끝 -->
 		
 <%@ include file="../footer.jsp" %>

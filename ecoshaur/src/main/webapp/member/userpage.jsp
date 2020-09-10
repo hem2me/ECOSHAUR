@@ -77,8 +77,11 @@ input.hidden {
                                     	<c:when  test="${dto.grade eq 'M'}">
                                     		마스터 등급
                                     	</c:when>
+                                    	<c:when  test="${dto.grade eq 'D'}">
+                                    		휴면 계정
+                                    	</c:when>
                                     	<c:when  test="${dto.grade eq 'W'}">
-                                    		탈퇴 회원
+                                    		탈퇴 계정
                                     	</c:when>
                                     </c:choose>
 								</li>
@@ -128,17 +131,17 @@ input.hidden {
       									<tr>
         								<th>상품게시번호</th>
         								<th>상품명</th>
-        								<th>상품등록일</th>
         								<th>제목</th>
+        								<th>상품등록일</th>
       									</tr>
     								</thead>  
     								<tbody>
     								<c:forEach var="dto" items="${user_rental}">
       									<tr>
-	        								<td>${dto.product_no}</td>
-	        								<td>${dto.product_name}</td>
-	        								<td>${dto.reg_date}</td>
+	        								<td><a href="RentalRead.do?product_no=${dto.product_no}">${dto.product_no}</a></td>
+	        								<td><a href="RentalRead.do?product_no=${dto.product_no}">${dto.product_name}</a></td>
 	        								<td>${dto.title}</td>
+	        								<td>${dto.reg_date}</td>
       									</tr>  
       								</c:forEach>        
 									</tbody>	
@@ -152,7 +155,7 @@ input.hidden {
                                </div>
                                 <div class="card">
                                      <c:forEach var="dto" items="${user_board}">
-                                         <h5 class="card-header">${dto.title}</h5>
+                                         <h5 class="card-header"><a href="BRead.do?postno=${dto.postno}">${dto.title}</a></h5>
                                          <div class="card-body">
                                               <div class="review-block">
                                                     <p class="review-text font-italic m-0"><a href="BRead.do?postno=${dto.postno}">${dto.contents}</a></p>

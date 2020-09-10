@@ -49,8 +49,7 @@
                             </form>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            
-                            
+                        	<!-- 멤버 프로필 -->
                             <c:choose>
 								<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 									<a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,10 +57,9 @@
                             	</c:when>
                             	<c:otherwise>
                             		<a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            		<img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            		<img src="assets/images/logo/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle"></a>
                             	</c:otherwise>
                             </c:choose>
-                            
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                 	<!-- 멤버 이름 -->
@@ -91,18 +89,16 @@
                                     		<span class="status"></span><span class="ml-2">게스트 등급</span>
                                     	</c:otherwise>
                                     </c:choose>
-                                    
                                 </div>
                                 <c:choose>
-										<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
-                                			
-                                		</c:when>
-                                		<c:otherwise>
-                                			<a class="dropdown-item" href="./login.do"><i class="fas fa-user mr-2"></i>로그인/회원가입</a>
-                                		</c:otherwise>
-                                </c:choose>
-                                <a class="dropdown-item" href="./mypage.do"><i class="fas fa-power-off mr-2"></i>마이페이지</a>
-                                <a class="dropdown-item" href="./Cart.do?nowpage=1&id=${id}"><i class="fas fa-cog mr-2"></i>장바구니</a>
+									<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
+              							<a class="dropdown-item" href="./mypage.do"><i class="fas fa-power-off mr-2"></i>마이페이지</a>
+              							<a class="dropdown-item" href="./Cart.do?nowpage=1&id=${id}"><i class="fas fa-cog mr-2"></i>장바구니</a>
+              						</c:when>
+              						<c:otherwise>
+                          				<a class="dropdown-item" href="./login.do"><i class="fas fa-user mr-2"></i>로그인/회원가입</a>
+              						</c:otherwise>
+              					</c:choose>
                             </div>
                         </li>
                     </ul>
