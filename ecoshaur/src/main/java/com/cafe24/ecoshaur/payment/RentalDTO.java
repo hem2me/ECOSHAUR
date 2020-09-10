@@ -21,14 +21,14 @@ public class RentalDTO {
   private String category_code;
   private char availability;
 //---------------------------------------  
-  //1)ìŠ¤í”„ë§ íŒŒì¼ ê°ì²´ ë©¤ë²„ ë³€ìˆ˜ ì„ ì–¸
+  //1)½ºÇÁ¸µ ÆÄÀÏ °´Ã¼ ¸â¹ö º¯¼ö ¼±¾ğ
   //<input type='file' name='posterMF'>
   private MultipartFile posterMF;
   
   //<input type='file' name='filenameMF'>
   private MultipartFile filenameMF;
   
-  //2)getterì™€ setterì‘ì„±
+  //2)getter¿Í setterÀÛ¼º
   public MultipartFile getPosterMF() {
     return posterMF;
   }
@@ -45,7 +45,7 @@ public class RentalDTO {
     this.filenameMF = filenameMF;
   }
   
-  //3)servlet-context.xmlì— ìŠ¤í”„ë§ë¹ˆ ë“±ë¡
+  //3)servlet-context.xml¿¡ ½ºÇÁ¸µºó µî·Ï
 //---------------------------------------
   
   public RentalDTO() { }

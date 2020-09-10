@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<link href="./assets/libs/css/cart_payment.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
@@ -21,18 +24,11 @@
     </div>
 </div>
 
-<link href="./assets/libs/css/cart_payment.css" rel="stylesheet" type="text/css">
-<script src="./assets/libs/js/cart_payment.js"></script>
-
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
 	<div class="cart-wrap">
 	<div class="container">
 	<div class="row">
 	    <div class="col-lg-12">
-	        <div class="main-heading">장바구니</div>
-	        <div class="table-cart"   id="cartlist">
+	        <div class="table-cart" id="cartlist">
             <table>
                 <thead>
                     <tr>
@@ -86,7 +82,7 @@
                  </tbody>
              </table>
                   
-                  <nav class="nav justify-content-center" aria-label="Page navigation example">
+        <nav class="nav justify-content-center" aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item">
 		    <c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
@@ -104,16 +100,16 @@
 		    </c:choose>
 		    Next</a></li>
 		  </ul>
-		</nav>
-                  
-                   
-	        </div>
-	        <!-- /.table-cart -->
-	        <a href="./Category.do?nowpage=1&col=&search=" class="btn btn-primary">쇼핑 계속하기</a>
-  <a href="Cartpayment.do?id=${id}&nowpage=1" class="btn btn-info">결제</a>
+		</nav>     
 	    </div>
+	        <a href="./Category.do?nowpage=1&col=&search=" class="btn btn-primary">쇼핑 계속하기</a>
+  			<a href="Cartpayment.do?id=${id}&nowpage=1" class="btn btn-info">결제</a>
+	    </div>
+</div>
+</div>
+</div>
 <script>
-	//1)X 버튼을 클릭했을때
+	//1)X 버튼을 클릭했을 때
 	$("#delete").click(function(){
 		var params="no=" + $("#no").val();
 		$.post("CartDel.do", params, check, "json");
@@ -125,14 +121,13 @@
 		location.reload();
 	}//checkID() end
 </script>
-<!-- 본문끝 -->
-	
-
-		
 	</c:when>
 	<c:otherwise>
 	<script>window.location.href = './';</script>
 </c:otherwise>
 </c:choose>
+<!-- 본문끝 -->
+	
 
+	
 <%@ include file="../footer.jsp"%>

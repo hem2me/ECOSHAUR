@@ -27,7 +27,7 @@ public class CartDAO {
     public CartDAO() {
     	dbopen=new DBOpen();
     }
-    //í˜ì´ì§•
+    //ÆäÀÌÂ¡
     public ArrayList<CartDTO> list(String id, int nowpage, int recordPerPage){
       int startRow = ((nowpage-1) * recordPerPage) ;
       int endRow   = recordPerPage;
@@ -64,14 +64,14 @@ public class CartDAO {
 			        list = null;
 			      }//if end
 		  }catch(Exception e) {
-			  System.out.println("ëª©ë¡ í™•ì¸ ì‹¤íŒ¨:" +e);
+			  System.out.println("¸ñ·Ï È®ÀÎ ½ÇÆĞ:" +e);
 		  }finally {
 			  DBClose.close(con,pstmt,rs);
 		  }
 		  return list;
     } //list end
     
-    //í˜ì´ì§•
+    //ÆäÀÌÂ¡
     public ArrayList<RentalDTO> rental_pdlist(String id, int nowpage, int recordPerPage) {
       int startRow = ((nowpage-1) * recordPerPage) ;
       int endRow   = recordPerPage;
@@ -107,14 +107,14 @@ public class CartDAO {
 	      }//if end
 
 	    } catch (Exception e) {
-	        System.out.println("ëŒ€ì—¬ìƒí’ˆëª©ë¡ í™•ì¸"+e);
+	        System.out.println("´ë¿©»óÇ°¸ñ·Ï È®ÀÎ"+e);
 	    } finally {
 	        DBClose.close(con, pstmt, rs);
 	    }//end
 	    return list;
 	  }//read() end
     
-    // í˜ì´ì§•X ëª©ë¡
+    // ÆäÀÌÂ¡X ¸ñ·Ï
     public ArrayList<CartDTO> list(String id){
        ArrayList<CartDTO> list=null;
       try {
@@ -147,14 +147,14 @@ public class CartDAO {
               list = null;
             }//if end
       }catch(Exception e) {
-        System.out.println("ëª©ë¡ í™•ì¸ ì‹¤íŒ¨:" +e);
+        System.out.println("¸ñ·Ï È®ÀÎ ½ÇÆĞ:" +e);
       }finally {
         DBClose.close(con,pstmt,rs);
       }
       return list;
     } //list end
     
-    // í˜ì´ì§•X ëª©ë¡
+    // ÆäÀÌÂ¡X ¸ñ·Ï
     public ArrayList<RentalDTO> rental_pdlist(String id) {
       
       RentalDTO dto = null;
@@ -187,34 +187,34 @@ public class CartDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("ëŒ€ì—¬ìƒí’ˆëª©ë¡ í™•ì¸"+e);
+          System.out.println("´ë¿©»óÇ°¸ñ·Ï È®ÀÎ"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return list;
     }//read() end
     
- // ëª©ë¡ ìµœëŒ€ í˜ì´ì§• ìˆ˜
+ // ¸ñ·Ï ÃÖ´ë ÆäÀÌÂ¡ ¼ö
     public int count(String id) {
       int count=0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
           sql=new StringBuilder();
           sql.append(" SELECT count(*) as cnt FROM cart ");
           sql.append(" WHERE id=? ");
           pstmt=con.prepareStatement(sql.toString());
           pstmt.setString(1, id);
           rs = pstmt.executeQuery();
-        if(rs.next()) { // cursor ê°€ ìˆëŠ”ì§€?
+        if(rs.next()) { // cursor °¡ ÀÖ´ÂÁö?
           count = rs.getInt("cnt");
         }else {
-          System.out.println("í–‰ ê°¯ìˆ˜ë¥¼ ì–»ì§€ëª»í•¨!!");
+          System.out.println("Çà °¹¼ö¸¦ ¾òÁö¸øÇÔ!!");
         }// if end
       }catch(Exception e) {
-        System.out.println(" ì¹´ìš´íŠ¸ì‹¤íŒ¨:" + e);
+        System.out.println(" Ä«¿îÆ®½ÇÆĞ:" + e);
       }finally {
         DBClose.close(con, pstmt ,rs);
       }// try end
@@ -238,7 +238,7 @@ public class CartDAO {
 	      }//if end
 
 	    } catch (Exception e) {
-	        System.out.println("í¬ì¸íŠ¸í™•ì¸"+e);
+	        System.out.println("Æ÷ÀÎÆ®È®ÀÎ"+e);
 	    } finally {
 	        DBClose.close(con, pstmt, rs);
 	    }//end
@@ -261,14 +261,14 @@ public class CartDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("ì´ê¸ˆì•¡ ì‹¤íŒ¨"+e);
+          System.out.println("ÃÑ±İ¾× ½ÇÆĞ"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return point;
     }//read() end
     
-    // í¬ì¸íŠ¸ ì¦ê°
+    // Æ÷ÀÎÆ® Áõ°¨
     public int pointUpdate(String id, PointDTO dto) {
       int cnt = 0;
       try {
@@ -281,14 +281,14 @@ public class CartDAO {
         pstmt.setInt(2, -dto.getPoint());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("í¬ì¸íŠ¸ ì¦ê°ì‹¤íŒ¨ : " + e);
+        System.out.println("Æ÷ÀÎÆ® Áõ°¨½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }
     
-    // í¬ì¸íŠ¸ ì¦ê°€
+    // Æ÷ÀÎÆ® Áõ°¡
     public int setpoint(String id, int point) {
       int cnt = 0;
       try {
@@ -301,14 +301,14 @@ public class CartDAO {
         pstmt.setInt(2, point);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("í¬ì¸íŠ¸ ì¦ê°€ì‹¤íŒ¨ : " + e);
+        System.out.println("Æ÷ÀÎÆ® Áõ°¡½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }
     
-    // ëŒ€ì—¬ì ì—°ë½ì²˜ ê°€ì ¸ì˜¤ê¸°
+    // ´ë¿©ÀÚ ¿¬¶ôÃ³ °¡Á®¿À±â
     public int get_tel(String id) {
       int point=0;
       try {
@@ -325,14 +325,14 @@ public class CartDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("ì´ê¸ˆì•¡ ì‹¤íŒ¨"+e);
+          System.out.println("ÃÑ±İ¾× ½ÇÆĞ"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
       return point;
     }
     
- // ì¥ë°”êµ¬ë‹ˆ ê°¯ìˆ˜ ê°€ì ¸ì˜¤ê¸°
+ // Àå¹Ù±¸´Ï °¹¼ö °¡Á®¿À±â
     public int get_cartCnt(String id) {
       int point=0;
       try {
@@ -349,7 +349,7 @@ public class CartDAO {
         }//if end
 
       } catch (Exception e) {
-          System.out.println("ì´ê¸ˆì•¡ ì‹¤íŒ¨"+e);
+          System.out.println("ÃÑ±İ¾× ½ÇÆĞ"+e);
       } finally {
           DBClose.close(con, pstmt, rs);
       }//end
@@ -357,7 +357,7 @@ public class CartDAO {
     }
     
     
-  // ì£¼ë¬¸ì„œë²ˆí˜¸ maxê°’ ê°€ì ¸ì˜¤ê¸°
+  // ÁÖ¹®¼­¹øÈ£ max°ª °¡Á®¿À±â
     public int OMax_code() {
       int num = 0;
       try {
@@ -373,14 +373,14 @@ public class CartDAO {
           num = rs.getInt("ORDER_NO");
         }
       } catch (Exception e) {
-        System.out.println("maxê°’ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨:" + e);
+        System.out.println("max°ª °¡Á®¿À±â ½ÇÆĞ:" + e);
       } finally {
         DBClose.close(con, pstmt, rs);
       }
       return num;
     } 
     
- // ì£¼ë¬¸ì„œ ì…ë ¥
+ // ÁÖ¹®¼­ ÀÔ·Â
     public int order_create(OrderDTO dto, String cid, int total_price, int number, int cartcnt) {
       int cnt = 0;
       try {
@@ -399,14 +399,14 @@ public class CartDAO {
         pstmt.setString(8, dto.getTel());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ì£¼ë¬¸ì„œ ì‘ì„± ì‹¤íŒ¨ : " + e);
+        System.out.println("ÁÖ¹®¼­ ÀÛ¼º ½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }
     
- // ì£¼ë¬¸ë‚´ì—­ì„œ ì…ë ¥
+ // ÁÖ¹®³»¿ª¼­ ÀÔ·Â
     public int orderhistory_create(OrderHistoryDTO ohdto, String cid, int number, ArrayList<CartDTO> cdto, ArrayList<RentalDTO> rdto, int total_price) {
       int cnt = 0;
       try {
@@ -431,7 +431,7 @@ public class CartDAO {
           }
         }
       } catch (Exception e) {
-        System.out.println("ì£¼ë¬¸ë‚´ì—­ì„œ ì‘ì„± ì‹¤íŒ¨ : " + e);
+        System.out.println("ÁÖ¹®³»¿ª¼­ ÀÛ¼º ½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -439,7 +439,7 @@ public class CartDAO {
     }
     
     
-    //ì‚­ì œ
+    //»èÁ¦
     public int cart_del(String id) {
       int cnt = 0;
       try {
@@ -451,7 +451,7 @@ public class CartDAO {
         pstmt.setString(1, id);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ì¥ë°”êµ¬ë‹ˆ ì‚­ì œì‹¤íŒ¨ : " + e);
+        System.out.println("Àå¹Ù±¸´Ï »èÁ¦½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -459,7 +459,7 @@ public class CartDAO {
     }// delete() end
 
     
-    // ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€
+    // Àå¹Ù±¸´Ï Ãß°¡
     public int create(CartDTO dto) {
       int cnt = 0;
       try {
@@ -476,7 +476,7 @@ public class CartDAO {
         pstmt.setInt(6, dto.getTotal_price());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€ ì‹¤íŒ¨ : " + e);
+        System.out.println("Àå¹Ù±¸´Ï Ãß°¡ ½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -484,7 +484,7 @@ public class CartDAO {
     }
     
     
-  //ì¥ë°”êµ¬ë‹ˆ ì‚­ì œ
+  //Àå¹Ù±¸´Ï »èÁ¦
     public int delete(int no) {
       int cnt = 0;
       try {
@@ -496,14 +496,14 @@ public class CartDAO {
         pstmt.setInt(1, no);
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ì¥ë°”êµ¬ë‹ˆì‚­ì œì‹¤íŒ¨ : " + e);
+        System.out.println("Àå¹Ù±¸´Ï»èÁ¦½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return cnt;
     }// delete() end
     
-    //ì¥ë°”êµ¬ë‹ˆ ì´ê¸ˆì•¡
+    //Àå¹Ù±¸´Ï ÃÑ±İ¾×
     public int total(String id) {
       int total = 0;
       try {
@@ -518,7 +518,7 @@ public class CartDAO {
           total=rs.getInt("price");
         }//if end
       } catch (Exception e) {
-        System.out.println("ì¥ë°”êµ¬ë‹ˆ ì´ê¸ˆì•¡ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨ : " + e);
+        System.out.println("Àå¹Ù±¸´Ï ÃÑ±İ¾× °¡Á®¿À±â ½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
@@ -526,14 +526,14 @@ public class CartDAO {
     }// delete() end
     
     
-    // ë°˜ë‚©ì‹ ì²­ ì½”ë“œë³€ê²½
+    // ¹İ³³½ÅÃ» ÄÚµåº¯°æ
     public int change_borrow(int order_no, String code) {
       int cnt = 0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
         sql=new StringBuilder();
         sql.append(" UPDATE order_history ");
         sql.append(" SET order_condition=? ");
@@ -545,14 +545,14 @@ public class CartDAO {
         
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ë°˜ë‚©ì‹ ì²­ ì½”ë“œë³€ê²½ ì‹¤íŒ¨ : " + e);
+        System.out.println("¹İ³³½ÅÃ» ÄÚµåº¯°æ ½ÇÆĞ : " + e);
       } finally {
         DBClose.close(con, pstmt);
       } // try end
       return cnt;
   } // memberSamplepasswd() end
     
-    // ìƒí’ˆ ê°¯ìˆ˜ë³´ê¸°
+    // »óÇ° °¹¼öº¸±â
     public int rental_quantity(String product_no) {
       int total = 0;
       try {
@@ -567,21 +567,21 @@ public class CartDAO {
           total=rs.getInt("remaining_quantity");
         }//if end
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆê°¯ìˆ˜ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ°°¹¼ö °¡Á®¿À±â ½ÇÆĞ : " + e);
       } finally {
         dbclose.close(con, pstmt);
       }
       return total;
     }
     
-    // ìƒí’ˆìƒíƒœ N
+    // »óÇ°»óÅÂ N
     public int change_stat(String product_no) {
       int cnt = 0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
         sql=new StringBuilder();
         sql.append(" UPDATE rental_list ");
         sql.append(" SET remaining_quantity = 0, availability = 'N' ");
@@ -592,21 +592,21 @@ public class CartDAO {
         
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆ ìƒíƒœ ë³€ê²½ ì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ° »óÅÂ º¯°æ ½ÇÆĞ : " + e);
       } finally {
         DBClose.close(con, pstmt);
       } // try end
       return cnt;
   } // memberSamplepasswd() end
     
-    // ìƒí’ˆê°¯ìˆ˜ ìˆ˜ì •
+    // »óÇ°°¹¼ö ¼öÁ¤
     public int change_quantity(String product_no, int quantity) {
       int cnt = 0;
       try {
-        // DBì—°ê²°
+        // DB¿¬°á
         con = dbopen.getConnection();
         
-        //4)SQLë¬¸ ì‘ì„±
+        //4)SQL¹® ÀÛ¼º
         sql=new StringBuilder();
         sql.append(" UPDATE rental_list ");
         sql.append(" SET remaining_quantity = ? ");
@@ -618,7 +618,7 @@ public class CartDAO {
         
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
-        System.out.println("ìƒí’ˆ ê°¯ìˆ˜ ë³€ê²½ ì‹¤íŒ¨ : " + e);
+        System.out.println("»óÇ° °¹¼ö º¯°æ ½ÇÆĞ : " + e);
       } finally {
         DBClose.close(con, pstmt);
       } // try end

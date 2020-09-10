@@ -23,10 +23,10 @@ public class CartCont {
   
 
   public CartCont() {
-    System.out.println("---CartCont()객체 생성 됨");
+    System.out.println("---CartCont()객체 생성됨");
   }
   
-//�긽�꽭蹂닿린
+//상세보기
    @RequestMapping(value = "Cart.do", method = RequestMethod.GET)
    public ModelAndView list(String id, int nowpage) {
      int recordPerPage = 4;
@@ -46,25 +46,34 @@ public class CartCont {
      return mav;
    }// read() end
    
-   // �옣諛붽뎄�땲 異붽�
+   // 장바구니 추가
    @RequestMapping(value = "Cart.do", method = RequestMethod.POST)
    public ModelAndView add(int price_daily, int deposit, CartDTO dto, int nowpage) {
+     int recordPerPage = 4;
+     int endRow   = nowpage * recordPerPage;
      ModelAndView mav = new ModelAndView();
-     mav.setViewName("member/msgView");
+     mav.setViewName("cart/Cart");
      
-     // 珥앷툑�븸 怨꾩궛
+     // 총금액 계산
      int total_price = (price_daily*dto.getQuantity())*(Integer.parseInt(dto.getRental_period())) + deposit;
      dto.setTotal_price(total_price);
      
-     // �옣諛붽뎄�땲 異붽�
-     dao.create(dto);
+     // 장바구니 추가
+     int cnt = dao.create(dto);
      
-     mav.addObject("msg1", "<script>window.location.href = 'Cart.do?nowpage=1&id=" + dto.getId() + "';</script>");
+     mav.addObject("cart_list", dao.list(dto.getId(), nowpage, recordPerPage));
+     mav.addObject("rental_list", dao.rental_pdlist(dto.getId(), nowpage, recordPerPage));
+     mav.addObject("id", dto.getId());
      
+     
+     mav.addObject("recordPerPage", recordPerPage);
+     mav.addObject("end", endRow);
+     mav.addObject("nowpage", nowpage);
+     mav.addObject("count", dao.count(dto.getId()));
      return mav;
    }// read() end
    
-  //�옣諛붽뎄�땲 寃곗젣�럹�씠吏�
+  //장바구니 결제페이지
   @RequestMapping(value = "Cartpayment.do", method = RequestMethod.GET)
   public ModelAndView rental_pdlist(String id, int nowpage) {
     int recordPerPage = 4;
@@ -87,17 +96,17 @@ public class CartCont {
 
   /* point          : point
    * cid            : id
-   * payment        : 二쇰Ц�궡�뿭�꽌 
-   * credit_card    : 二쇰Ц�궡�뿭�꽌
-   * card_num       : 二쇰Ц�궡�뿭�꽌
-   * address        : 二쇰Ц�꽌
-   * address_r      : 二쇰Ц�꽌
-   * delivery_method: 二쇰Ц�꽌
-   * tel            : 二쇰Ц�꽌
+   * payment        : 주문내역서 
+   * credit_card    : 주문내역서
+   * card_num       : 주문내역서
+   * address        : 주문서
+   * address_r      : 주문서
+   * delivery_method: 주문서
+   * tel            : 주문서
    * 
-   * point�뒗 id�� point瑜� 媛��졇���꽌 �룷�씤�듃媛먯냼 怨꾩궛 �뀋
-   * 二쇰Ц�꽌�뒗 odto�� id, �룷�씤�듃瑜� 怨꾩궛�븳 珥앷껐�젣湲덉븸, 寃곗젣�긽�뭹媛��닔,  二쇰Ц�꽌踰덊샇瑜� 怨꾩궛�썑 媛��졇���꽌 �엯�젰
-   * 二쇰Ц�궡�뿭�꽌�뒗 ohdto�� id, �룷�씤�듃瑜� 怨꾩궛�븳 珥앷껐�젣湲덉븸, 二쇰Ц�꽌踰덊샇 媛��졇���꽌 id瑜� �씠�슜�빐�꽌 移댄듃�뀒�씠釉붿뿉 �긽�뭹踰덊샇, �닔�웾媛��졇�삤怨� �엯�젰
+   * point는 id와 point를 가져와서 포인트감소 계산 ㅇ
+   * 주문서는 odto와 id, 포인트를 계산한 총결제금액, 결제상품갯수,  주문서번호를 계산후 가져와서 입력
+   * 주문내역서는 ohdto와 id, 포인트를 계산한 총결제금액, 주문서번호 가져와서 id를 이용해서 카트테이블에 상품번호, 수량가져오고 입력
    */
   
   @RequestMapping(value = "Cartpayment.do", method = RequestMethod.POST)
@@ -105,33 +114,33 @@ public class CartCont {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("cart/msgView");
     
-    // �룷�씤�듃瑜� 怨꾩궛�븳 珥앷껐�젣湲덉븸
+    // 포인트를 계산한 총결제금액
     int total_price = dao.total_price(cid) - pdto.getPoint();
-    // �옣諛붽뎄�땲 媛��닔
+    // 장바구니 갯수
     int cartcnt = dao.get_cartCnt(cid);
-    // 二쇰Ц�꽌踰덊샇 �옉�뾽
-    int number = dao.OMax_code()+1;        // 移댄뀒怨좊━肄붾뱶�뿉 �빐�떦�븯�뒗 �긽�뭹紐⑸줉踰덊샇 理쒕�媛� 媛��졇�삤湲�
-    // �옣諛붽뎄�땲 由ъ뒪�듃 (�긽�뭹踰덊샇 order)
+    // 주문서번호 작업
+    int number = dao.OMax_code()+1;        // 카테고리코드에 해당하는 상품목록번호 최대값 가져오기
+    // 장바구니 리스트 (상품번호 order)
     ArrayList<CartDTO> cdto = new ArrayList<CartDTO>();
     cdto = dao.list(cid);
-    // �긽�뭹紐⑸줉 蹂댁쬆湲� (�긽�뭹踰덊샇 order)
+    // 상품목록 보증금 (상품번호 order)
     ArrayList<RentalDTO> rdto = new ArrayList<RentalDTO>();
     rdto = dao.rental_pdlist(cid);
     
-    // �룷�씤�듃 利앷컧 �엯�젰
+    // 포인트 증감 입력
     int point_cnt = dao.pointUpdate(cid, pdto);
     if(point_cnt != 0)
       point_cnt = 1;
-    // 二쇰Ц�꽌 �엯�젰
+    // 주문서 입력
     int order_cnt = dao.order_create(odto, cid, total_price, number, cartcnt);
     if(order_cnt != 0)
       order_cnt = 1;
-    // 二쇰Ц�궡�뿭�꽌 �엯�젰
+    // 주문내역서 입력
     int orderhistory = dao.orderhistory_create(ohdto, cid, number, cdto, rdto, total_price);
     if(orderhistory != 0)
       orderhistory = 1;
     
-    // �긽�뭹 媛��닔 �닔�젙
+    // 상품 갯수 수정
     for(int i=0;i<cdto.size();i++) {
       int qq = dao.rental_quantity(cdto.get(i).getProduct_no());
       int stat = qq - cdto.get(i).getQuantity();
@@ -144,28 +153,28 @@ public class CartCont {
       }
     }
     
-    // �옣諛붽뎄�땲 �궘�젣 
+    // 장바구니 삭제 
     int cart_del = dao.cart_del(cid);
     if(cart_del != 0)
       cart_del = 1;
     
-    // �룷�씤�듃 �궗�슜�븞�뻽�쑝硫� 200 �룷�씤�듃 異붽�
+    // 포인트 사용안했으면 200 포인트 추가
     if(pdto.getPoint() == 0)
       dao.setpoint(cid, 200);
     
     int check = point_cnt + order_cnt + orderhistory + cart_del;
     
     if (check != 4) {
-      mav.addObject("msg1", "<script>alert('寃곗젣�뿉 �떎�뙣�븯���뒿�땲�떎'); window.location.href = './';</script>");
+      mav.addObject("msg1", "<script>alert('결제에 실패하였습니다'); window.location.href = './';</script>");
     } else {
-      mav.addObject("msg1", "<script>alert('寃곗젣�뿉 �꽦怨듯븯���뒿�땲�떎'); window.location.href = './';</script>");
+      mav.addObject("msg1", "<script>alert('결제에 성공하였습니다'); window.location.href = './';</script>");
     }
 
     return mav;
   }// read() end
   
   
-// �옣諛붽뎄�땲 �궘�젣
+// 장바구니 삭제
  @RequestMapping(value = "CartDel.do")
  public ModelAndView CategoryList(int cart_no, HttpSession session) {   
      ModelAndView mav = new ModelAndView();
@@ -180,7 +189,7 @@ public class CartCont {
  }// CategoryList() end
  
  
-//諛섎궔肄붾뱶 �떊泥�
+//반납코드 신청
  @RequestMapping(value = "borrow.do", method = RequestMethod.GET)
  public ModelAndView borrow(int order_no) {
    ModelAndView mav = new ModelAndView();
@@ -190,9 +199,9 @@ public class CartCont {
    int cnt = dao.change_borrow(order_no, "A");
    
    if (cnt == 0) {
-     mav.addObject("msg1", "<script>alert('諛섎궔�떊泥��뿉 �떎�뙣�븯���뒿�땲�떎'); window.location.href = 'mypage.do';</script>");
+     mav.addObject("msg1", "<script>alert('반납신청에 실패하였습니다'); window.location.href = 'mypage.do';</script>");
    } else {
-     mav.addObject("msg1", "<script>alert('諛섎궔�떊泥��뿉 �꽦怨듯븯���뒿�땲�떎'); window.location.href = 'mypage.do';</script>");
+     mav.addObject("msg1", "<script>alert('반납신청에 성공하였습니다'); window.location.href = 'mypage.do';</script>");
    }
    
    return mav;
