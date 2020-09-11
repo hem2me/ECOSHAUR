@@ -88,7 +88,7 @@
 			</div>
 			<a href="Userpage.do?id=${dto.id}" class="ranking-highest__name">${dto.mem_name}</a>
 			<div class="ranking-highest__tierrank ">
-				<img src="assets/images/firstgrade.png">
+				<img src="assets/images/secondgrade.png">
 				<c:choose>
 					<c:when  test="${dto.grade eq 'U'}">
                    		<span class="status"></span><span>유저 등급</span>
